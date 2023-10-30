@@ -1,7 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import json
-import os
 
 scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -9,7 +8,7 @@ scopes = [
     "https://www.googleapis.com/auth/drive",
 ]
 
-creds = os.getenv("creds") or json.load(open("creds.json"))
+creds = json.load(open("creds.json"))
 CREDS = Credentials.from_service_account_file(creds, scopes=scopes)
 
 gc = gspread.authorize(CREDS)

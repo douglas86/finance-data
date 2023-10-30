@@ -13,6 +13,9 @@ This is the 3rd project for Code Institute.
 - [Introduction](#introduction)
 - [Project setup](#project-setup)
   - [Setting up this project locally](#setting-up-this-project-locally)
+- [Planning](#planning)
+  - [Technology Used](#technology-used)
+  - [Flow Chart Diagram](#flow-chart-diagram)
 
 ---
 
@@ -61,6 +64,22 @@ This is the 3rd project for Code Institute.
 - choose a branch to deploy normally I choose the main branch then click deploy
 - wait a few minutes for it to finish, once it has finished and build successfully, then click view
 - with any luck it should be up and running on heroku
+
+---
+
+## [Planning](#table-of-content)
+
+### [Technology Used](#table-of-content)
+- I used Python version 3.12.0 for this project
+- Intellij IDE for development
+- Heroku for deployment
+- google developer console for getting the correct credentials for communicating with Google servers
+- gspread pip package for communicating with my spreadsheet
+- libreoffice draw for designing the flow chart diagram
+
+### [Flow Chart Diagram](#table-of-content)
+
+Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) document
 
 ---
 

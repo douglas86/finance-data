@@ -1,3 +1,19 @@
+## [Introduction](#table-of-content)
+
+This is the 3rd project for Code Institute.
+
+- This is a simple terminal emulator to talk to Google Spreadsheets
+- This emulator will be used to update the sheet for day-to-day expenses of my financials
+- It will often use the date of the server or computer that it is running on the know were to place the data
+
+---
+
+# Table of Content
+
+- [Introduction](#introduction)
+
+---
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome,

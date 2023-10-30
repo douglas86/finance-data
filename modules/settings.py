@@ -4,6 +4,11 @@ from google.oauth2.service_account import Credentials
 
 
 class Settings:
+    """
+    This is where all the setting for my project is kept
+    The variable gc is used to connect to the spreadsheet in Google Drive
+    """
+
     SCOPE = [
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive.file",

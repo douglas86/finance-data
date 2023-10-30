@@ -1,3 +1,5 @@
+import os
+
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -9,7 +11,9 @@ SCOPE = [
 
 
 # creds = json.load(open("creds.json"))
-CREDS = Credentials.from_service_account_file("./creds.json", scopes=SCOPE)
+CREDS = Credentials.from_service_account_file(
+    "creds.json" or os.environ["creds.json"], scopes=SCOPE
+)
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # gc = GSPREAD_CLIENT.open("love_sandwiches")

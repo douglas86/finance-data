@@ -10,18 +10,17 @@ SCOPE = [
 ]
 
 
-# creds = json.load(open("creds.json"))
+# heroku variable to get environment variable when on heroku
 heroku_conn = heroku3.from_key("CREDS")
+# will load creds.json when on local machine when live will load heroku environment variable
 CREDS = Credentials.from_service_account_file("creds.json" or heroku_conn, scopes=SCOPE)
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-# gc = GSPREAD_CLIENT.open("love_sandwiches")
+# used to communicate with the spreadsheet
+GSPREAD_CLIENT = gspread.authorize(CREDS)
 
 
 def main():
     print("The json file is")
     gc = GSPREAD_CLIENT.open("love_sandwiches")
-
     print(gc)
     print("file opened")
 

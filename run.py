@@ -2,20 +2,19 @@ from gspread.exceptions import SpreadsheetNotFound
 from modules.template import Template
 
 from modules.settings import gc
+from tests.delete_spreadsheet import delete_spreadsheet
 
 
 def main():
     t = Template("finance", "douglasmaxton@gmail.com")
-    for spreadsheet in gc.openall():
-        print("title", spreadsheet.title)
-        print("id", spreadsheet.id)
 
-    # gc.del_spreadsheet("1F3I-vZ5DtkV4_YQun_XAC5Gv58bLtTJoYlZyGsxa1sc")
+    delete_spreadsheet()
+
     try:
-        # gc.open("finance")
+        gc.open("finance")
         print("Spreadsheet opened")
     except SpreadsheetNotFound:
-        t.create_spreadsheet()
+        print(t.create_spreadsheet())
 
 
 main()

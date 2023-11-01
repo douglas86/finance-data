@@ -1,11 +1,15 @@
+from gspread.exceptions import SpreadsheetNotFound
+from modules.template import create_spreadsheet
+
 from modules.settings import gc
 
 
 def main():
-    print("The json file is")
-    sh = gc.open("love_sandwiches")
-    print(sh)
-    print("file opened")
+    try:
+        gc.open("finance")
+        print("Spreadsheet opened")
+    except SpreadsheetNotFound:
+        create_spreadsheet()
 
 
 main()

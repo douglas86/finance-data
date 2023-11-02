@@ -1,14 +1,15 @@
-from modules.settings import gc
+from modules.settings import client
 
 
 def delete_spreadsheet():
     title = []
+    spreadsheet = client.open("finance")
 
-    for spreadsheet in gc.openall():
-        title.append({"title": spreadsheet.title, "id": spreadsheet.id})
+    for sheet in client.open_all():
+        title.append({"title": sheet.title, "id": sheet.id})
         print("titleBefore", title)
 
     for i in title:
         if i["title"] == "finance":
-            gc.del_spreadsheet(i["id"])
+            spreadsheet.delete()
             print("titleAfter", title)

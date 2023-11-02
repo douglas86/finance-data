@@ -1,20 +1,22 @@
-from gspread.exceptions import SpreadsheetNotFound
+from pygsheets.exceptions import SpreadsheetNotFound
 from modules.template import Template
 
-from modules.settings import gc
 from tests.delete_spreadsheet import delete_spreadsheet
 
 
 def main():
-    t = Template("finance", "douglasmaxton@gmail.com")
+    spreadsheet_title = "finance"
+    email_address = "douglasmaxton@gmail.com"
+    t = Template(spreadsheet_title, email_address)
 
     delete_spreadsheet()
 
     try:
-        gc.open("finance")
-        print("Spreadsheet opened")
+        t.open_spreadsheet()
+        print("Spreadsheet open")
     except SpreadsheetNotFound:
-        print(t.create_spreadsheet())
+        t.create_spreadsheet()
+        print("File not found")
 
 
 main()

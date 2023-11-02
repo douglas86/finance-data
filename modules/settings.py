@@ -1,34 +1,14 @@
+import pygsheets
 import heroku3
-import gspread
-from google.oauth2.service_account import Credentials
 
 
-class Settings:
+def settings():
     """
-    This is where all the setting for my project is kept
-    The variable gc is used to connect to the spreadsheet in Google Drive
+    Call client to authorize you to use Google API with spreadsheets
+    :return:
     """
+    heroku_cred = heroku3.from_key("CREDS")
+    filename = "creds.json" or heroku_cred
+    client = pygsheets.authorize(service_file=filename)
 
-    SCOPE = [
-        "https://www.googleapis.com/auth/spreadsheets",
-        "https://www.googleapis.com/auth/drive.file",
-        "https://www.googleapis.com/auth/drive",
-    ]
-
-    # gets environment variable when live on heroku
-    heroku_conn = heroku3.from_key("CREDS")
-
-    # checks file for local or heroku
-    # if local loads creds.json file
-    # if live loads heroku_conn variable
-    filename = "creds.json" or heroku_conn
-
-    # credentials variable for google spreadsheet
-    credentials = Credentials.from_service_account_file(filename=filename, scopes=SCOPE)
-
-    # spreadsheet authorization
-    gc = gspread.authorize(credentials)
-
-
-# variable to call when ever you want to talk to spreadsheet
-gc = Settings.gc
+    return client

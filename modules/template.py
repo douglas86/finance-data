@@ -61,7 +61,7 @@
 #             first_month_starts_at += 40
 #
 #         return "Spreadsheet created"
-from modules.settings import client
+from modules.settings import user
 
 
 class Template:
@@ -79,14 +79,14 @@ class Template:
         self.email_address = email_address
 
     def open_spreadsheet(self):
-        return client.open(self.name)
+        return user.open(self.name)
 
     def create_spreadsheet(self):
         """
         Creates a new Spreadsheet
         :return:
         """
-        client.create(title=self.name)
-        spreadsheet = client.open(self.name)
+        user.create(title=self.name)
+        spreadsheet = user.open(self.name)
         spreadsheet.share(self.email_address, role="writer")
         print("Spreadsheet created")

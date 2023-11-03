@@ -1,11 +1,11 @@
-from modules.settings import client
+from modules.settings import user
 
 
 def delete_spreadsheet():
     title = []
-    spreadsheet = client.open("finance")
+    spreadsheet = user.open("finance")
 
-    for sheet in client.open_all():
+    for sheet in user.open_all():
         title.append({"title": sheet.title, "id": sheet.id})
         print("titleBefore", title)
 

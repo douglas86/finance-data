@@ -79,6 +79,10 @@ class Template:
         self.email_address = email_address
 
     def open_spreadsheet(self):
+        """
+        Opens the spreadsheet
+        :return:
+        """
         return user.open(self.name)
 
     def create_spreadsheet(self):

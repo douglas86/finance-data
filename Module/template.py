@@ -1,5 +1,6 @@
 from Module.settings import drive, file_list
 from Module.dates import current_year
+import pygsheets
 
 
 class Template:
@@ -32,13 +33,19 @@ class Template:
             },
         ).execute()
 
+    def check_files_in_folder(self):
+        for file in file_list:
+            self.files_in_folder[file["title"]] = file["id"]
+
+        print("o", self.files_in_folder)
+
     def create_template(self):
         """
         checks if file with name of current year exist
         :return:
         """
-        for file in file_list:
-            self.files_in_folder[file["title"]] = file["id"]
+
+        self.check_files_in_folder()
 
         for key in self.files_in_folder.keys():
             # current year exists create it
@@ -49,6 +56,8 @@ class Template:
             else:
                 print("file found")
                 break
+
+        pygsheets.worksheet.DataRange()
 
 
 template = Template(

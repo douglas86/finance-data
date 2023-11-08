@@ -1,4 +1,4 @@
-from Module.settings import drive
+from Module.settings import drive, file_list
 from Module.dates import current_year
 
 
@@ -6,6 +6,9 @@ class Template:
     """
     Copies and creates the basic blueprint from template spreadsheet
     """
+
+    # class variables
+    files_in_folder = {}
 
     def __init__(self, file_id, folder_id):
         """
@@ -28,6 +31,24 @@ class Template:
                 "title": current_year,
             },
         ).execute()
+
+    def create_template(self):
+        """
+        checks if file with name of current year exist
+        :return:
+        """
+        for file in file_list:
+            self.files_in_folder[file["title"]] = file["id"]
+
+        for key in self.files_in_folder.keys():
+            # current year exists create it
+            if key != str(current_year):
+                self.copy_file()
+                print(f"{current_year} spreadsheet created")
+                break
+            else:
+                print("file found")
+                break
 
 
 template = Template(

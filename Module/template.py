@@ -28,6 +28,7 @@ class Template:
         if crud_operation == "get":
             getting = self.open_spreadsheet().worksheet("data").batch_get(lists)
             self.list_data_from_sheet.append(getting[0])
+            self.list_data_from_sheet.append(getting[1])
             return f"Data fetched from {current_year} spreadsheet"
         # updates batch data to spreadsheet
         else:
@@ -46,7 +47,8 @@ class Template:
         Calls __iter__ to iterate over data from spreadsheet
         :return:
         """
-        print(self.__iter__("get", ["D9:O24"]))
+        print(self.__iter__("get", ["D9:O24", "J33:L48"]))
+        # print(self.__iter__("get", ["J33:L48"]))
 
     def update_data(self):
         """
@@ -111,7 +113,9 @@ class Template:
 
         # get and update data was spreadsheet has been created
         self.get_data()
-        self.update_data()
+        # self.update_data()
+
+        print("list", self.list_data_from_sheet)
 
 
 # variable to call the class Template

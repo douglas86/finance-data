@@ -5,7 +5,7 @@ from Module.dates import current_year
 
 class Template:
     """
-    The template is still to be created
+    Creates the spreadsheet needed for the current year with all data copied from template spreadsheet
     """
 
     list_data_from_sheet = []

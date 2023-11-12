@@ -8,7 +8,10 @@ class Template:
     Creates the spreadsheet needed for the current year with all data copied from template spreadsheet
     """
 
-    list_data_from_sheet = []
+    account_balances = []
+    transfers_between_accounts = []
+    debit_orders = []
+    reserve_from_previous_year = []
 
     def __init__(self, file_id, folder_id):
         """
@@ -27,8 +30,11 @@ class Template:
         # gets batch data from spreadsheet
         if crud_operation == "get":
             getting = self.open_spreadsheet().worksheet("data").batch_get(lists)
-            self.list_data_from_sheet.append(getting[0])
-            self.list_data_from_sheet.append(getting[1])
+            self.account_balances.append(getting[0])
+            self.account_balances.append(getting[1])
+            self.account_balances.append(getting[2])
+            self.account_balances.append(getting[3])
+            print("getting", getting)
             return f"Data fetched from {current_year} spreadsheet"
         # updates batch data to spreadsheet
         else:
@@ -47,8 +53,8 @@ class Template:
         Calls __iter__ to iterate over data from spreadsheet
         :return:
         """
-        print(self.__iter__("get", ["D9:O24", "J33:L48"]))
-        # print(self.__iter__("get", ["J33:L48"]))
+        # gathers 4 groups of data from data worksheet
+        print(self.__iter__("get", ["D9:O24", "J33:L48", "Q9:R24", "C33:H47"]))
 
     def update_data(self):
         """
@@ -89,8 +95,8 @@ class Template:
         """
         return [
             eval(x)
-            for i in range(len(self.list_data_from_sheet[0]))
-            for x in self.list_data_from_sheet[0][i]
+            for i in range(len(self.account_balances[0]))
+            for x in self.account_balances[0][i]
         ]
 
     def create_spreadsheet(self):
@@ -115,7 +121,7 @@ class Template:
         self.get_data()
         # self.update_data()
 
-        print("list", self.list_data_from_sheet)
+        print("list", self.account_balances)
 
 
 # variable to call the class Template

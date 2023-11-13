@@ -102,11 +102,19 @@ class Template:
             place_in_list_to_start += stop_in_list
 
     def update_debit_orders(self):
-        print("debit orders", self.debit_orders)
-        for i in range(len(self.debit_orders[0])):
-            for x in self.debit_orders[0][i]:
-                if x == "never" or x == "1":
-                    print("i", self.debit_orders[0][i])
+        """
+        Logic for updating debit orders
+        All data for debit orders was fetched from get_data method and appended to a debit_orders list
+        Check if the year of debit orders is the same as the current year
+        If it is the same as current year then check the month
+
+        :return:
+        """
+
+        # order debit orders in numerical order based on day of the month
+        self.debit_orders[0].sort(key=lambda x: int(x[1]))
+
+        return self.debit_orders
 
     def update_data(self):
         """
@@ -161,9 +169,10 @@ class Template:
 
         # get and update data from spreadsheet
         print(self.get_data())
-        print(self.update_data())
+        # print(self.update_data())
 
-        print("debit orders", self.debit_orders)
+        # print("debit orders", self.debit_orders)
+        self.update_debit_orders()
 
 
 # variable to call the class Template

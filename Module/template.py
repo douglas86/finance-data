@@ -12,6 +12,7 @@ class Template:
     transfers_between_accounts = []
     debit_orders = []
     reserve_from_previous_year = []
+    data_to_update_spreadsheet_with = [{"range": "A1", "values": [[int(current_year)]]}]
 
     def __init__(self, file_id, folder_id):
         """
@@ -22,7 +23,7 @@ class Template:
         self.file_id = file_id
         self.folder_id = folder_id
 
-    def __iter__(self, crud_operation, lists):
+    def __iter__(self, crud_operation, lists=None):
         """
         Special built-in function to iterate over a list, dictionary or tuple
         :return:
@@ -37,7 +38,9 @@ class Template:
             return f"Data fetched from {current_year} spreadsheet"
         # updates batch data to spreadsheet
         else:
-            self.open_spreadsheet().sheet1.batch_update(lists)
+            self.open_spreadsheet().sheet1.batch_update(
+                self.data_to_update_spreadsheet_with
+            )
             return f"Data has been updated to {current_year} spreadsheet"
 
     def open_spreadsheet(self):
@@ -55,6 +58,45 @@ class Template:
         # gathers 4 groups of data from data worksheet
         print(self.__iter__("get", ["D9:O24", "J33:L48", "Q9:R24", "C33:H47"]))
 
+    def update_account_balances(self, dictionary):
+        """
+        Updates data in account balances
+        :return:
+        """
+
+        # row number to start at
+        range_to_start_at = dictionary["start"]
+        # row number to stop at
+        range_to_end_at = dictionary["end"]
+        # variable to start at in a list
+        place_in_list_to_start = 0
+        # variable for where I want to stop in a list
+        stop_in_list = dictionary["stop_in_list"]
+        # name of the column to start at
+        start_column = dictionary["start_column"]
+        # name of the column to stop at
+        end_column = dictionary["end_column"]
+
+        while range_to_start_at < range_to_end_at:
+            self.data_to_update_spreadsheet_with.append(
+                {
+                    "range": f"{start_column}{range_to_start_at}:{end_column}{range_to_end_at}",
+                    "values": [
+                        self.list_data()[
+                            place_in_list_to_start : place_in_list_to_start
+                            + stop_in_list
+                        ]
+                    ],
+                }
+            )
+
+            range_to_start_at += 1
+            place_in_list_to_start += stop_in_list
+
+        self.__iter__("updating")
+
+        return "Spreadsheet data has been updated"
+
     def update_data(self):
         """
         Once data has been fetched
@@ -62,30 +104,40 @@ class Template:
         :return:
         """
 
-        # list to update spreadsheet with
-        list_to_update_spreadsheet = [{"range": "A1", "values": [[int(current_year)]]}]
+        update_account_balances = {
+            "start": 5,
+            "end": 21,
+            "stop_in_list": 12,
+            "start_column": "BE",
+            "end_column": "DP",
+        }
 
-        # variables to call with updating list above
-        acc_data_range = 5
-        acc_data_values = 0
+        print(self.update_account_balances(update_account_balances))
 
-        # iteration to update the list above
-        while acc_data_range < 21:
-            list_to_update_spreadsheet.append(
-                {
-                    "range": f"BE{acc_data_range}:DP{acc_data_range}",
-                    "values": [
-                        self.list_data()[acc_data_values : acc_data_values + 12]
-                    ],
-                }
-            )
-            # acc_data_range updates by one as the rows are one after the other in spreadsheet
-            acc_data_range += 1
-            # acc_data_values updates by 12 as there are 12 months in a year
-            # and columns are one after the other
-            acc_data_values += 12
-
-        print(self.__iter__("updating", list_to_update_spreadsheet))
+        # # list to update spreadsheet with
+        # list_to_update_spreadsheet = [{"range": "A1", "values": [[int(current_year)]]}]
+        #
+        # # variables to call with updating list above
+        # acc_data_range = 5
+        # acc_data_values = 0
+        #
+        # # iteration to update the list above
+        # while acc_data_range < 21:
+        #     list_to_update_spreadsheet.append(
+        #         {
+        #             "range": f"BE{acc_data_range}:DP{acc_data_range}",
+        #             "values": [
+        #                 self.list_data()[acc_data_values : acc_data_values + 12]
+        #             ],
+        #         }
+        #     )
+        #     # acc_data_range updates by one as the rows are one after the other in spreadsheet
+        #     acc_data_range += 1
+        #     # acc_data_values updates by 12 as there are 12 months in a year
+        #     # and columns are one after the other
+        #     acc_data_values += 12
+        #
+        # print(self.__iter__("updating", list_to_update_spreadsheet))
 
     def list_data(self):
         """
@@ -118,7 +170,7 @@ class Template:
 
         # get and update data was spreadsheet has been created
         self.get_data()
-        # self.update_data()
+        self.update_data()
 
 
 # variable to call the class Template

@@ -31,10 +31,9 @@ class Template:
         if crud_operation == "get":
             getting = self.open_spreadsheet().worksheet("data").batch_get(lists)
             self.account_balances.append(getting[0])
-            self.account_balances.append(getting[1])
-            self.account_balances.append(getting[2])
-            self.account_balances.append(getting[3])
-            print("getting", getting)
+            self.reserve_from_previous_year.append(getting[1])
+            self.transfers_between_accounts.append(getting[2])
+            self.debit_orders.append(getting[3])
             return f"Data fetched from {current_year} spreadsheet"
         # updates batch data to spreadsheet
         else:
@@ -120,8 +119,6 @@ class Template:
         # get and update data was spreadsheet has been created
         self.get_data()
         # self.update_data()
-
-        print("list", self.account_balances)
 
 
 # variable to call the class Template

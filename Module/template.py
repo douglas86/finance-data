@@ -114,7 +114,28 @@ class Template:
         # order debit orders in numerical order based on day of the month
         self.debit_orders[0].sort(key=lambda x: int(x[1]))
 
-        return self.debit_orders
+        def update_spreadsheet_list(start_column, start_row, count, element_in_list):
+            self.data_to_update_spreadsheet_with.append(
+                {
+                    "range": f"{start_column}{start_row+count}",
+                    "values": [[self.debit_orders[0][count][element_in_list]]],
+                }
+            )
+
+        # iterates over debit order to be updated to spreadsheet
+        for i in range(len(self.debit_orders[0])):
+            # updates the name of the debit order
+            update_spreadsheet_list("C", 43, i, 0)
+            # updates the day of the month
+            update_spreadsheet_list("F", 43, i, 1)
+            # updates the value of the debit order as a float number
+            # strips pound and converts it to number
+            self.data_to_update_spreadsheet_with.append(
+                {
+                    "range": f"BP{25+i}",
+                    "values": [[eval(self.debit_orders[0][i][5].split("£")[1])]],
+                }
+            )
 
     def update_data(self):
         """
@@ -169,7 +190,7 @@ class Template:
 
         # get and update data from spreadsheet
         print(self.get_data())
-        # print(self.update_data())
+        print(self.update_data())
 
         # print("debit orders", self.debit_orders)
         self.update_debit_orders()

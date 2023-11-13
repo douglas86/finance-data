@@ -13,7 +13,7 @@ def main():
 
     # Deleted spreadsheet
     delete_spreadsheet(
-        file_id="1ZYVfoglyYaf7ArPOQLaUaJo-EnO--0TNsyx6rImnrmc",
+        file_id="1pAiNrBJKvliF1H59cCRe8FH3oUiMam8iSc_7tLp2YIs",
     )
 
     # check to see if the spreadsheet with current_year is created

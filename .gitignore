@@ -11,4 +11,3 @@ node_modules/
 # json files with client secrets
 creds.json
 creds2.json
-client_secrets.json

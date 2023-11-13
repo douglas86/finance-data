@@ -9,9 +9,9 @@ class Template:
     """
 
     account_balances = []
-    transfers_between_accounts = []
-    debit_orders = []
     reserve_from_previous_year = []
+    debit_orders = []
+    transfers_between_accounts = []
     data_to_update_spreadsheet_with = [{"range": "A1", "values": [[int(current_year)]]}]
 
     def __init__(self, file_id, folder_id):
@@ -33,6 +33,7 @@ class Template:
             return [eval(n.strip("£")) for x in l for n in x]
 
         # gets batch data from spreadsheet
+        # appends it to the correct list
         if crud_operation == "get":
             getting = self.open_spreadsheet().worksheet("data").batch_get(lists)
             self.account_balances.append(split_unwanted_pound_symbol(getting[0]))
@@ -100,6 +101,13 @@ class Template:
             range_to_start_at += 1
             place_in_list_to_start += stop_in_list
 
+    def update_debit_orders(self):
+        print("debit orders", self.debit_orders)
+        for i in range(len(self.debit_orders[0])):
+            for x in self.debit_orders[0][i]:
+                if x == "never" or x == "1":
+                    print("i", self.debit_orders[0][i])
+
     def update_data(self):
         """
         Once data has been fetched
@@ -126,6 +134,7 @@ class Template:
 
         self.update_rows_and_columns(update_account_balances)
         self.update_rows_and_columns(update_reserve_from_previous_year)
+        self.update_debit_orders()
 
         # iterates around a list then updates it in spreadsheet
         self.__iter__("updating")
@@ -153,6 +162,8 @@ class Template:
         # get and update data from spreadsheet
         print(self.get_data())
         print(self.update_data())
+
+        print("debit orders", self.debit_orders)
 
 
 # variable to call the class Template

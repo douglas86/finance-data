@@ -103,11 +103,7 @@ class Template:
 
     def update_debit_orders(self):
         """
-        Logic for updating debit orders
-        All data for debit orders was fetched from get_data method and appended to a debit_orders list
-        Check if the year of debit orders is the same as the current year
-        If it is the same as current year then check the month
-
+        Updates the debit orders with title, day and amount in the spreadsheet
         :return:
         """
 

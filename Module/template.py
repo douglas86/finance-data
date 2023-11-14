@@ -90,6 +90,8 @@ class Template:
         end_column = dictionary["end_column"]
         lists = dictionary["lists"]
 
+        # while loop to create the data needed for updating spreadsheet
+        # this while loop updates the account balances and previous year data from the year before
         while range_to_start_at < range_to_end_at:
             self.data_to_update_spreadsheet_with.append(
                 {
@@ -103,6 +105,7 @@ class Template:
                 }
             )
 
+            # increments the while loop so that it knows what to update
             range_to_start_at += 1
             place_in_list_to_start += stop_in_list
 
@@ -116,6 +119,14 @@ class Template:
         self.debit_orders[0].sort(key=lambda x: int(x[1]))
 
         def update_spreadsheet_list(start_column, start_row, count, element_in_list):
+            """
+            This function is used to dynamically update the data used concerning my debit orders
+            :param start_column: Column letter for where you want to start appending to
+            :param start_row: Row number for when the data needs to start from
+            :param count: Running variable to add to the row number
+            :param element_in_list: This is where the data sits in each debit order list
+            :return: Does not return anything but updates the list for spreadsheet
+            """
             self.data_to_update_spreadsheet_with.append(
                 {
                     "range": f"{start_column}{start_row+count}",

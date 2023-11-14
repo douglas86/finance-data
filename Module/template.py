@@ -154,7 +154,7 @@ class Template:
         """
         Once data has been fetched
         Calls __iter__ method to iterate over and update data to spreadsheet
-        :return:
+        :return: Returns string say, "Spreadsheet data has been updated"
         """
 
         update_account_balances = {
@@ -174,8 +174,11 @@ class Template:
             "lists": self.reserve_from_previous_year[0],
         }
 
+        # update account balances from the previous year
         self.update_rows_and_columns(update_account_balances)
+        # update October, November and December data from previous year
         self.update_rows_and_columns(update_reserve_from_previous_year)
+        # updating debit orders data with title, day of month and amount
         self.update_debit_orders()
 
         # iterates around a list then updates it in spreadsheet

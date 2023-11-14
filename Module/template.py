@@ -150,6 +150,8 @@ class Template:
                 }
             )
 
+        return "Debit order has been updated with title, day of month and amount"
+
     def update_data(self):
         """
         Once data has been fetched
@@ -208,8 +210,8 @@ class Template:
         print(self.get_data())
         print(self.update_data())
 
-        # print("debit orders", self.debit_orders)
-        self.update_debit_orders()
+        # updating of debit orders
+        print(self.update_debit_orders())
 
 
 # variable to call the class Template

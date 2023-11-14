@@ -93,7 +93,28 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 
 ### [User Stories](#table-of-content)
 
+- Create a spreadsheet that I can use to better handle my day-to-day expenses
+- Copies the balances over into the new spreadsheet from template 
+- All basic expenses get subtracted from my main Monzo account
+- My salary gets paid into Barclays then transferred based on a percentage to my Monzo account
+- Created space to take on three loans—be it borrowing from other people or taking a loan out at a bank
+- Created space for two pension funds as you don't ever need more than that
+
 ### [Features](#table-of-content)
+
+- Laundry is always paid in Cash so that doesn't subtract from Monzo
+- All expenses are shown on a Pie chart when they occur with the percentage
+
+![Pie chart.png](assets/images/readme/Pie%20chart.png)
+
+- I have created a section for reserve/payback
+- It becomes a reserve when I want to see how long the money in that account will last me
+- This is based on a 3-month withdrawal from that account
+- Pension funds are based on a 3-months of daily expenses
+- For when I retire one day, I want to see how long my money will last at the average that I am spending
+- The second opening that I left for a pension fund under reserve will always be at zero as the one above will take
+  both pension funds into account as it works on the balance of both
+- Loans are based on a 3-month deposit as I want to see how long it will take until the loan is paid back
 
 ---
 

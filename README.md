@@ -16,6 +16,12 @@ This is the 3rd project for Code Institute.
 - [Planning](#planning)
   - [Technology Used](#technology-used)
   - [Flow Chart Diagram](#flow-chart-diagram)
+- [User Stories and features](#user-stories-and-features)
+  - [User Stories](#user-stories)
+  - [Features](#features)
+- [Plans for the future of this project](#plans-for-the-future-of-this-project)
+  - [Add a total tab](#add-a-total-tab)
+  - [Debit order calculations](#debit-orders-calculations)
 
 ---
 
@@ -80,6 +86,31 @@ This is the 3rd project for Code Institute.
 ### [Flow Chart Diagram](#table-of-content)
 
 Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) document
+
+---
+
+## [User Stories and Features](#table-of-content)
+
+### [User Stories](#table-of-content)
+
+### [Features](#table-of-content)
+
+---
+
+## [Plans for the future of this project](#table-of-content)
+
+### [Add a total tab](#table-of-content)
+
+- I am wanting to add a total tab at the end of december
+- This total tab will be used to automatically calculate all the totals in withdrawals and deposit
+
+### [Debit orders calculations](#table-of-content)
+
+- When the spreadsheet is created initially from the template spreadsheet
+- It creates a copy updating all debit orders at the start of the year
+- What I would like to do as a future update is when the debit order stops at a certain time that year
+- Say march, then in april that debit order is deleted, the template gets updated and re-ordered and updated again 
+  in april month
 
 ---
 

@@ -20,16 +20,18 @@ This is the third project for Code Institute.
     - [Setting up python on your local machine](#setting-up-python-on-your-local-machine)
     - [git cloning this project locally](#git-cloning-this-project-locally)
     - [Setting up a Google Service account](#setting-up-a-google-service-account)
-    - [Setting up this project on Heroku](#setting-up-this-project-on-heroku)
+  - [Setting up this project on Heroku](#setting-up-this-project-on-heroku)
 - [Planning](#planning)
   - [Technology Used](#technology-used)
   - [Flow Chart Diagram](#flow-chart-diagram)
 - [User Stories and features](#user-stories-and-features)
   - [User Stories](#user-stories)
   - [Features](#features)
+- [Testing](#testing)
 - [Plans for the future of this project](#plans-for-the-future-of-this-project)
   - [Add a total tab](#add-a-total-tab)
   - [Debit order calculations](#debit-orders-calculations)
+- [Credits](#credits)
 
 ---
 
@@ -84,7 +86,7 @@ Sharing of folders can be found next to the Folder name there will be an arrow w
 
 ![sharing folder.png](assets/images/readme/sharing%20folder.png)
 
-## Setting up this project on Heroku
+### Setting up this project on Heroku
 - create a file called runtime.txt, this tells heroku what version of python you want to use
 - Head on over to heroku.com or just type heroku into Google it should be the first one that pops up
 - Login to heroku
@@ -95,6 +97,8 @@ Sharing of folders can be found next to the Folder name there will be an arrow w
 - in the config vars section, click on the button that says reveal config vars
 - add CREDS as the key and all the code in the json file as the value
 - do the same with folder id and file id
+- adding the same credentials that you use in the .env file
+- add a PORT variable with 8000 as its value
 - add the following buildpacks for your app: heroku/python, heroku/nodejs
 - make sure that the buildpacks are in the correct order with python being first
 - Go to the Deploy tab at the top
@@ -152,6 +156,10 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 
 ---
 
+## [Testing](#table-of-content)
+
+---
+
 ## [Plans for the future of this project](#table-of-content)
 
 ### [Add a total tab](#table-of-content)
@@ -169,35 +177,11 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 
 ---
 
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## [Credits](#table-of-content)
 
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- [Luke Buchanan](https://www.linkedin.com/in/lukebuchanan67/) - Mentor
+- Rory Patrick Sheridan - Stand in Mentor
+- [Code Institute](https://codeinstitute.net/) - Bootcamp
+- How to [sort a list in order](https://www.geeksforgeeks.org/python-sort-list-according-second-element-sublist/) based on the second value in that list
 
 ---
-
-Happy coding!

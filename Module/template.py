@@ -1,6 +1,4 @@
-from Module.settings import client
-
-from Module.dates import current_year
+from Module.settings import client, current_year
 
 
 class Template:

@@ -4,7 +4,7 @@ import heroku3
 from simple_dotenv import GetEnv
 
 """
-This file contains all of my environment variables
+This file is used to work with environment variables
 """
 
 

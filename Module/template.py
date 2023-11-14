@@ -30,6 +30,11 @@ class Template:
         """
 
         def split_unwanted_pound_symbol(l):
+            """
+            Filter out the unwanted pound symbol
+            :param l:
+            :return: The amount as a number
+            """
             return [eval(n.strip("£")) for x in l for n in x]
 
         # gets batch data from spreadsheet
@@ -119,6 +124,7 @@ class Template:
             )
 
         # iterates over debit order to be updated to spreadsheet
+        # updates with title, day and amount
         for i in range(len(self.debit_orders[0])):
             # updates the name of the debit order
             update_spreadsheet_list("C", 43, i, 0)

@@ -1,10 +1,14 @@
 ## [Introduction](#table-of-content)
 
-This is the 3rd project for Code Institute.
+This is the third project for Code Institute.
 
 - This is a simple terminal emulator to talk to Google Spreadsheets
 - This emulator will be used to update the sheet for day-to-day expenses of my financials
-- It will often use the date of the server or computer that it is running on the know were to place the data
+- It uses the current year to create the spreadsheet
+- Coping data from a template spreadsheet
+
+- All credentials that you might or might not see in this project
+- Are only for demonstration purposes, as such have been discarded since the creation of this project
 
 ---
 
@@ -13,6 +17,10 @@ This is the 3rd project for Code Institute.
 - [Introduction](#introduction)
 - [Project setup](#project-setup)
   - [Setting up this project locally](#setting-up-this-project-locally)
+    - [Setting up python on your local machine](#setting-up-python-on-your-local-machine)
+    - [git cloning this project locally](#git-cloning-this-project-locally)
+    - [Setting up a Google Service account](#setting-up-a-google-service-account)
+    - [Setting up this project on Heroku](#setting-up-this-project-on-heroku)
 - [Planning](#planning)
   - [Technology Used](#technology-used)
   - [Flow Chart Diagram](#flow-chart-diagram)
@@ -42,6 +50,7 @@ This is the 3rd project for Code Institute.
 - alias py='python3.12'
 - Now whenever you need to run a python file with python version 3.12
 - Type the word py followed by a command
+- py run.py
 
 #### git cloning this project locally
 - if using ssh, run the following command
@@ -50,6 +59,30 @@ This is the 3rd project for Code Institute.
 - git clone https://github.com/douglas86/finance-data.git
 - now that this program is local, you can run the following commands
 - py run.py
+
+#### Setting up a Google Service account
+- This [link](https://docs.gspread.org/en/latest/oauth2.html) will show you how to set up a basic Google service account
+- Once the json file has been downloaded to your local machine, save it as creds.json at the root of your project
+- Create a .env file for storing environment variables locally
+- You need to Environment variables: Folder_id and File_id
+- Folder_id—this is the folder where all the spreadsheets get placed, make sure to share it with your service account
+- File_id this is the id of the template file
+- Both the Folder_id and File_id can be received in the url of the address bar
+- The env file should look something like this
+
+![env file.png](assets/images/readme/env%20file.png)
+
+Folder ID can be found after the forward slash, after the word folders
+
+![folder id.png](assets/images/readme/folder%20id.png)
+
+File ID can be found after the d and forward slash
+
+![file id.png](assets/images/readme/file%20id.png)
+
+Sharing of folders can be found next to the Folder name there will be an arrow with options
+
+![sharing folder.png](assets/images/readme/sharing%20folder.png)
 
 ## Setting up this project on Heroku
 - create a file called runtime.txt, this tells heroku what version of python you want to use
@@ -61,6 +94,7 @@ This is the 3rd project for Code Institute.
 - once the app has been created, go to the settings tab to add the environment variables
 - in the config vars section, click on the button that says reveal config vars
 - add CREDS as the key and all the code in the json file as the value
+- do the same with folder id and file id
 - add the following buildpacks for your app: heroku/python, heroku/nodejs
 - make sure that the buildpacks are in the correct order with python being first
 - Go to the Deploy tab at the top

@@ -28,9 +28,11 @@ This is the third project for Code Institute.
   - [User Stories](#user-stories)
   - [Features](#features)
 - [Testing](#testing)
+  - [Delete old spreadsheet file when creating a new spreadsheet](#delete-old-spreadsheet-file-when-creating-a-new-spreadsheet)
 - [Plans for the future of this project](#plans-for-the-future-of-this-project)
   - [Add a total tab](#add-a-total-tab)
   - [Debit order calculations](#debit-orders-calculations)
+  - [Spreadsheet and terminal needs to be interchangeable](#spreadsheet-and-terminal-needs-to-be-interchangeable)
 - [Credits](#credits)
 
 ---
@@ -160,6 +162,21 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 
 ## [Testing](#table-of-content)
 
+### [Delete old spreadsheet file when creating a new spreadsheet](#table-of-content)
+
+- Whenever I am testing if the new spreadsheet copies the correct data
+- I have to delete the old one first
+- I have created a separate function in a test.py file called delete_spreadsheet
+- I only have to pass in the id number
+
+This image shows how the function looks place this in the run.py file when you need it
+
+![delete_spreadsheet_function.png](assets/images/readme/delete_spreadsheet_function.png)
+
+You can find the file id from the address bar
+
+![file id.png](assets/images/readme/file%20id.png)
+
 ---
 
 ## [Plans for the future of this project](#table-of-content)
@@ -176,6 +193,8 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 - What I would like to do as a future update is when the debit order stops at a certain time that year
 - Say march, then in april that debit order is deleted, the template gets updated and re-ordered and updated again 
   in april month
+
+### [Spreadsheet and terminal needs to be interchangeable](#table-of-content)
 
 ---
 

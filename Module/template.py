@@ -66,7 +66,7 @@ class Template:
         # gathers 4 groups of data from data worksheet
         self.__iter__("get", ["D9:O24", "J33:L48", "Q9:R24", "C33:H47"])
 
-        return f"Data has been fetched from {current_year} spreadsheet"
+        print(f"Data has been fetched from {current_year} spreadsheet")
 
     def update_rows_and_columns(self, dictionary):
         """
@@ -148,7 +148,10 @@ class Template:
                 }
             )
 
-        return "Debit order has been updated with title, day of month and amount"
+        print("Debit order has been updated with title, day of month and amount")
+
+    def update_transfers_between_accounts(self):
+        print("Transfers being worked on")
 
     def update_data(self):
         """
@@ -180,11 +183,13 @@ class Template:
         self.update_rows_and_columns(update_reserve_from_previous_year)
         # updating debit orders data with title, day of month and amount
         self.update_debit_orders()
+        # updating funds transfers
+        self.update_transfers_between_accounts()
 
         # iterates around a list then updates it in spreadsheet
         self.__iter__("updating")
 
-        return "Spreadsheet data has been updated"
+        print(f"All data has been successfully updated to {current_year} Spreadsheet")
 
     def create_spreadsheet(self):
         """
@@ -205,11 +210,8 @@ class Template:
         print(f"{current_year} spreadsheet created")
 
         # get and update data from spreadsheet
-        print(self.get_data())
-        print(self.update_data())
-
-        # updating of debit orders
-        print(self.update_debit_orders())
+        self.get_data()
+        self.update_data()
 
 
 # variable to call the class Template

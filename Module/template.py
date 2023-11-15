@@ -1,4 +1,5 @@
 from Module.settings import client, current_year
+from utils.keys import FOLDER_ID, FILE_ID
 
 
 class Template:
@@ -6,10 +7,12 @@ class Template:
     Creates the spreadsheet needed for the current year with all data copied from template spreadsheet
     """
 
+    # Places data that was gathered from spreadsheet in correct list
     account_balances = []
     reserve_from_previous_year = []
     debit_orders = []
     transfers_between_accounts = []
+    # Append to list for what you want updated to spreadsheet
     data_to_update_spreadsheet_with = [{"range": "A1", "values": [[int(current_year)]]}]
 
     def __init__(self, file_id, folder_id):
@@ -36,7 +39,7 @@ class Template:
             return [eval(n.strip("£")) for x in l for n in x]
 
         # gets batch data from spreadsheet
-        # appends it to the correct list
+        # appends it to the correct list above
         if crud_operation == "get":
             getting = self.open_spreadsheet().worksheet("data").batch_get(lists)
             self.account_balances.append(split_unwanted_pound_symbol(getting[0]))
@@ -113,7 +116,7 @@ class Template:
         :return:
         """
 
-        # order debit orders in numerical order based on day of the month
+        # debit orders are order based on numerical order by day of the month
         self.debit_orders[0].sort(key=lambda x: int(x[1]))
 
         def update_spreadsheet_list(start_column, start_row, count, element_in_list):
@@ -233,7 +236,7 @@ class Template:
         """
         Once data has been fetched
         Calls __iter__ method to iterate over and update data to spreadsheet
-        :return: Returns string say, "Spreadsheet data has been updated"
+        :return:
         """
 
         update_account_balances = {
@@ -267,6 +270,16 @@ class Template:
 
         print(f"All data has been successfully updated to {current_year} Spreadsheet")
 
+    def delete_sheet(self):
+        """
+        Once all data has been fetched and updated delete 'data' worksheet
+        :return:
+        """
+        worksheet = self.open_spreadsheet().get_worksheet(12)
+        self.open_spreadsheet().del_worksheet(worksheet)
+
+        print("Data worksheet deleted")
+
     def create_spreadsheet(self):
         """
         Creates the spreadsheet
@@ -288,6 +301,9 @@ class Template:
         # get and update data from spreadsheet
         self.get_data()
         self.update_data()
+
+        # deletes the data worksheet after all data has been retrieved
+        self.delete_sheet()
 
 
 # variable to call the class Template

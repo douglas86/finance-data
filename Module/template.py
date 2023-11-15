@@ -151,7 +151,17 @@ class Template:
         print("Debit order has been updated with title, day of month and amount")
 
     def update_transfers_between_accounts(self):
-        print("Transfers being worked on")
+        percentage_to_transfer_to_monzo_account = self.transfers_between_accounts[0][0]
+        percentage_to_transfer_to_everyday = self.transfers_between_accounts[0][1]
+        amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
+        loans = self.transfers_between_accounts[0][10:13]
+        pensions = self.transfers_between_accounts[0][13:15]
+
+        print("monzo", percentage_to_transfer_to_monzo_account)
+        print("everyday", percentage_to_transfer_to_everyday)
+        print("savings", amount_to_deposit_into_savings_pots)
+        print("loans", loans)
+        print("pensions", pensions)
 
     def update_data(self):
         """

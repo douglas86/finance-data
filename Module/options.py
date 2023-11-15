@@ -1,3 +1,6 @@
+from Module.settings import current_month
+
+
 class Options:
     """
     This file is used to point you to the correct option class
@@ -18,6 +21,7 @@ class Options:
 
         number = input("What option do you want to pick? ")
 
+        print(f"The current month is {current_month}")
         print(f"Your number is {number}")
 
 

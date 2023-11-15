@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from datetime import date
+from datetime import date, datetime
 
 
 SCOPE = [
@@ -19,3 +19,5 @@ client = gspread.Client(auth=SCOPED_CREDS)
 # working with dates
 today = date.today()
 current_year = today.year
+now = datetime.now()
+current_month = now.strftime("%B")

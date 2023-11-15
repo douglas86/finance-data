@@ -144,8 +144,11 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 
 ### [Features](#table-of-content)
 
-- Laundry is always paid in Cash so that doesn't subtract from Monzo Main Account
 - All expenses are shown on a Pie chart when they occur with the percentage
+- The new spreadsheet is always created from the template spreadsheet
+- It is created with the title of the current year
+
+![current_year_spreadsheet.png](assets/images/readme/current_year_spreadsheet.png)
 
 ![Pie chart.png](assets/images/readme/Pie%20chart.png)
 

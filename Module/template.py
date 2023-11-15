@@ -171,31 +171,34 @@ class Template:
         Update account transfers
         :return:
         """
+        # Gathers all lists needed for transfers between accounts
+        amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
+        loans = self.transfers_between_accounts[0][10:13]
+        pensions = self.transfers_between_accounts[0][13:15]
 
         def strip_percentage(string):
+            """
+            Removes the percentage sign from number
+            :param string:
+            :return:
+            """
             return int(string.strip("%"))
 
-        amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
-        # loans = self.transfers_between_accounts[0][10:13]
-        # pensions = self.transfers_between_accounts[0][13:15]
+        def strip_pound(lists):
+            """
+            Strip away the £ symbol and convert it to a list
+            :param lists:
+            :return: List with float numbers
+            """
+            l = [amount.strip("£") for lis in lists for amount in lis if amount]
+            num = [float(number.replace(",", "")) for number in l]
 
-        def amount_as_number(lists):
-            number = [eval(amount[1].strip("£")) for amount in lists]
-            amount = []
-
-            for index in range(len(number)):
-                if type(number[index]) == tuple:
-                    res = "".join(str(ele) for ele in list(number[index]))
-                    amount.append(float(res))
-                else:
-                    amount.append(number[index])
-
-            return amount
+            return num
 
         update_savings_pot = {
             "row": 47,
             "column": "L",
-            "lists": amount_as_number(amount_to_deposit_into_savings_pots),
+            "lists": strip_pound(amount_to_deposit_into_savings_pots),
         }
 
         update_transfer = {
@@ -207,16 +210,24 @@ class Template:
             ],
         }
 
+        update_loans = {
+            "row": 53,
+            "column": "L",
+            "lists": strip_pound(loans),
+        }
+
+        update_pension = {
+            "row": 56,
+            "column": "L",
+            "lists": strip_pound(pensions),
+        }
+
         self.update_rows(update_savings_pot)
         self.update_rows(update_transfer)
+        self.update_rows(update_loans)
+        self.update_rows(update_pension)
 
         print("transfers between accounts have been updated")
-
-        # print("monzo", percentage_to_transfer_to_monzo_account)
-        # print ("every day", percentage_to_transfer_to_everyday)
-        # print("savings", amount_to_deposit_into_savings_pots)
-        # print("loans", loans)
-        # print("pensions", pensions)
 
     def update_data(self):
         """

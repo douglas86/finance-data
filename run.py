@@ -12,13 +12,15 @@ def main():
     """
 
     # check to see if the spreadsheet with current_year is created
-    try:
-        template.open_spreadsheet()
-        options.option_selected()
-    except SpreadsheetNotFound:
-        # creates the spreadsheet using a template
-        # renaming file with current_year
-        template.create_spreadsheet()
+    # try:
+    #     template.open_spreadsheet()
+    #     options.option_selected()
+    # except SpreadsheetNotFound:
+    #     # creates the spreadsheet using a template
+    #     # renaming file with current_year
+    #     template.create_spreadsheet()
+
+    options.option_selected()
 
 
 main()

@@ -150,23 +150,32 @@ class Template:
 
         print("Debit order has been updated with title, day of month and amount")
 
+    def update_rows(self, dictionary):
+        """
+        This will update a row selection
+        :param dictionary:
+        :return:
+        """
+
+        row = dictionary["row"]
+        column = dictionary["column"]
+        lists = dictionary["lists"]
+
+        for number in range(len(lists)):
+            self.data_to_update_spreadsheet_with.append(
+                {"range": f"{column}{row+number}", "values": [[lists[number]]]}
+            )
+
     def update_transfers_between_accounts(self):
         """
         Update account transfers
         :return:
         """
 
-        # def strip_percentage(string, symbol_to_strip):
-        #     return int(string.strip(symbol_to_strip))
+        def strip_percentage(string):
+            return int(string.strip("%"))
 
-        # percentage_to_transfer_to_monzo_account = strip_percentage(
-        #     self.transfers_between_accounts[0][0][0], "%"
-        # )
-        # percentage_to_transfer_to_everyday = strip_percentage(
-        #     self.transfers_between_accounts[0][1][0], "%"
-        # )
-
-        # amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
+        amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
         # loans = self.transfers_between_accounts[0][10:13]
         # pensions = self.transfers_between_accounts[0][13:15]
 
@@ -183,28 +192,25 @@ class Template:
 
             return amount
 
-        amount_to_deposit_into_savings_pots = [
-            ["", "£10.00"],
-            ["", "£1,620.00"],
-            ["", "£6.00"],
-            ["", "£3.00"],
-            ["", "£50.00"],
-            ["", "£3.00"],
-        ]
-
         update_savings_pot = {
-            "start_row": 47,
-            "end_row": 52,
-            "stop_in_list": 12,
-            "start_column": "L",
-            "end_column": "L",
+            "row": 47,
+            "column": "L",
             "lists": amount_as_number(amount_to_deposit_into_savings_pots),
         }
 
-        self.update_rows_and_columns(update_savings_pot)
+        update_transfer = {
+            "row": 43,
+            "column": "K",
+            "lists": [
+                strip_percentage(self.transfers_between_accounts[0][0][0]) / 100,
+                strip_percentage(self.transfers_between_accounts[0][1][0]) / 100,
+            ],
+        }
 
-        print("update", self.data_to_update_spreadsheet_with)
-        print("savings", amount_as_number(amount_to_deposit_into_savings_pots))
+        self.update_rows(update_savings_pot)
+        self.update_rows(update_transfer)
+
+        print("transfers between accounts have been updated")
 
         # print("monzo", percentage_to_transfer_to_monzo_account)
         # print ("every day", percentage_to_transfer_to_everyday)

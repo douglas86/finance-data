@@ -176,7 +176,7 @@ class Template:
 
         # update account balances from the previous year
         self.update_rows_and_columns(update_account_balances)
-        # update October, November and December data from previous year
+        # update October, November and December data from the previous year
         self.update_rows_and_columns(update_reserve_from_previous_year)
         # updating debit orders data with title, day of month and amount
         self.update_debit_orders()

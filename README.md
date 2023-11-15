@@ -51,7 +51,7 @@ This is the third project for Code Institute.
 - Set an alias in the .bashrc file for running python files
 - alias py='python3.12'
 - Now whenever you need to run a python file with python version 3.12
-- Type the word py followed by a command
+- type "py" followed by the file that you want to run
 - py run.py
 
 #### git cloning this project locally
@@ -59,16 +59,16 @@ This is the third project for Code Institute.
 - git clone git@github.com:douglas86/finance-data.git
 - if using http, run the following command
 - git clone https://github.com/douglas86/finance-data.git
-- now that this program is local, you can run the following commands
+- now that this program is local, you can run the following command
 - py run.py
 
 #### Setting up a Google Service account
 - This [link](https://docs.gspread.org/en/latest/oauth2.html) will show you how to set up a basic Google service account
 - Once the json file has been downloaded to your local machine, save it as creds.json at the root of your project
 - Create a .env file for storing environment variables locally
-- You need to Environment variables: Folder_id and File_id
-- Folder_id—this is the folder where all the spreadsheets get placed, make sure to share it with your service account
-- File_id this is the id of the template file
+- Place the following variables in your .env file: FOLDER_ID and FILE_ID
+- FOLDER_ID: This is the folder where all the spreadsheets get placed, make sure to share it with your service account
+- FILE_ID: This is the id of the template spreadsheet file
 - Both the Folder_id and File_id can be received in the url of the address bar
 - The env file should look something like this
 
@@ -84,30 +84,32 @@ File ID can be found after the d and forward slash
 
 Sharing of folders can be found next to the Folder name there will be an arrow with options
 
+You should see a screen that looks something like this.
+
 ![sharing folder.png](assets/images/readme/sharing%20folder.png)
 
 ### Setting up this project on Heroku
-- create a file called runtime.txt, this tells heroku what version of python you want to use
+- Create a file called runtime.txt, this tells heroku what version of python you want to use
 - Head on over to heroku.com or just type heroku into Google it should be the first one that pops up
 - Login to heroku
-- on the heroku dashboard, click the button that says new then click new app
-- give your app a name bear in mind that names have to be unique across the entire heroku organisation
-- choose a region
-- once the app has been created, go to the settings tab to add the environment variables
-- in the config vars section, click on the button that says reveal config vars
-- add CREDS as the key and all the code in the json file as the value
-- do the same with folder id and file id
-- adding the same credentials that you use in the .env file
-- add a PORT variable with 8000 as its value
-- add the following buildpacks for your app: heroku/python, heroku/nodejs
-- make sure that the buildpacks are in the correct order with python being first
+- On the heroku dashboard, click the button that says new then click new app
+- Give your app a name bear in mind that names have to be unique across the entire heroku organisation
+- Choose a region
+- Once the app has been created, go to the settings tab to add the environment variables
+- In the config vars section, click on the button that says reveal config vars
+- Add CREDS as the key and all the code in the json file as the value
+- Do the same with folder id and file id
+- Adding the same credentials that you use in the .env file
+- Add a PORT variable with 8000 as its value
+- Add the following buildpacks for your app: heroku/python, heroku/nodejs
+- Make sure that the buildpacks are in the correct order with python being first
 - Go to the Deploy tab at the top
 - Under deployment method connect your GitHub repo
-- once you are successfully connected
-- scroll down until you get manual deploy as we want to see how the app looks
-- choose a branch to deploy normally I choose the main branch then click deploy
-- wait a few minutes for it to finish, once it has finished and build successfully, then click view
-- with any luck it should be up and running on heroku
+- Once you are successfully connected
+- Scroll down until you get manual deploy as we want to see how the app looks
+- Choose a branch to deploy normally I choose the main branch then click deploy
+- Wait a few minutes for it to finish, once it has finished and build successfully, then click view
+- With any luck it should be up and running on heroku
 
 ---
 
@@ -140,7 +142,7 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finance.pdf) documen
 
 ### [Features](#table-of-content)
 
-- Laundry is always paid in Cash so that doesn't subtract from Monzo
+- Laundry is always paid in Cash so that doesn't subtract from Monzo Main Account
 - All expenses are shown on a Pie chart when they occur with the percentage
 
 ![Pie chart.png](assets/images/readme/Pie%20chart.png)

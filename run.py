@@ -2,7 +2,7 @@ from gspread.exceptions import SpreadsheetNotFound
 
 
 from Module.template import template
-from Module.options import options
+from Module.options import select_option
 
 
 def main():
@@ -20,7 +20,7 @@ def main():
     #     # renaming file with current_year
     #     template.create_spreadsheet()
 
-    options.option_selected()
+    select_option()
 
 
 main()

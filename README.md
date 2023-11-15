@@ -194,7 +194,12 @@ You can find the file id from the address bar
 - Say march, then in april that debit order is deleted, the template gets updated and re-ordered and updated again 
   in april month
 
-### [Spreadsheet and terminal needs to be interchangeable](#table-of-content)
+### [Spreadsheet and terminal need to be interchangeable](#table-of-content)
+
+- When the template gets updated, it needs to check if all data has changed
+- At this point, it is only basing everything on the template
+- As soon as data is entered in the terminal it updates the template at the same time
+- As a plan, I would like it to get all data from last year to make sure it is all up to date
 
 ---
 

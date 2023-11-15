@@ -7,7 +7,7 @@ class Template:
     Creates the spreadsheet needed for the current year with all data copied from template spreadsheet
     """
 
-    # Places data that was gathered from spreadsheet in correct list
+    # Places data that was gathered from spreadsheet in a correct list
     account_balances = []
     reserve_from_previous_year = []
     debit_orders = []
@@ -59,7 +59,7 @@ class Template:
         Opens up the spreadsheet
         :return:
         """
-        return client.open(title=str(current_year), folder_id=self.folder_id)
+        return client.open(title=str(current_year), folder_id=str(self.folder_id))
 
     def get_data(self):
         """
@@ -308,6 +308,6 @@ class Template:
 
 # variable to call the class Template
 template = Template(
-    file_id="1-M5rHQY78wq_VWDUWLhz2hZvux3lY9y7lOT7PY4uGS0",
-    folder_id="1jDCB53uToJ7nDm5_vxZr7019Zje9RmcX",
+    file_id=FILE_ID,
+    folder_id=FOLDER_ID,
 )

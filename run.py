@@ -4,8 +4,6 @@ from gspread.exceptions import SpreadsheetNotFound
 from Module.template import template
 from Module.tests import delete_spreadsheet
 
-from utils.keys import FOLDER_ID, FILE_ID
-
 
 def main():
     """
@@ -14,9 +12,9 @@ def main():
     """
 
     # Deleted spreadsheet
-    # delete_spreadsheet(
-    #     file_id="1lwNQWcHECpDTAr4JVCEDermtLMQcpWckXCIuRje9NWA",
-    # )
+    delete_spreadsheet(
+        file_id="1TtuUsESXdflo6wBnL81RTe1Vx5vIgWZbOkVS_oGEo9w",
+    )
 
     # check to see if the spreadsheet with current_year is created
     try:
@@ -26,9 +24,6 @@ def main():
         # creates the spreadsheet using a template
         # renaming file with current_year
         template.create_spreadsheet()
-
-    print("folder id", FOLDER_ID)
-    print("file id", FILE_ID)
 
 
 main()

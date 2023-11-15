@@ -1,5 +1,4 @@
 # Your requirements go here
 heroku3~=5.2.1
-pygsheets~=2.0.6
-PyDrive2~=1.17.0
 gspread~=5.12.0
+python-dotenv~=1.0.0

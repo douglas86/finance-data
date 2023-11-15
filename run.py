@@ -12,18 +12,20 @@ def main():
     """
 
     # Deleted spreadsheet
-    delete_spreadsheet(
-        file_id="1IDBajh6jk92aCg3BSAvW923Z5mt1JR8PQRYQANi6D9M",
-    )
+    # delete_spreadsheet(
+    #     file_id="1K23t7GO6gNCONqWRs-ebBEJ5vfqKV3FpqsB6aFYPy7o",
+    # )
 
     # check to see if the spreadsheet with current_year is created
-    try:
-        template.open_spreadsheet()
-        print("spreadsheet open")
-    except SpreadsheetNotFound:
-        # creates the spreadsheet using a template
-        # renaming file with current_year
-        template.create_spreadsheet()
+    # try:
+    #     template.open_spreadsheet()
+    #     print("spreadsheet open")
+    # except SpreadsheetNotFound:
+    #     # creates the spreadsheet using a template
+    #     # renaming file with current_year
+    #     template.create_spreadsheet()
+
+    template.update_transfers_between_accounts()
 
 
 main()

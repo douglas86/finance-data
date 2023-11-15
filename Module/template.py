@@ -75,9 +75,9 @@ class Template:
         """
 
         # row number to start at
-        range_to_start_at = dictionary["start"]
+        range_to_start_at = dictionary["start_row"]
         # row number to stop at
-        range_to_end_at = dictionary["end"]
+        range_to_end_at = dictionary["end_row"]
         # variable to start at in a list
         place_in_list_to_start = 0
         # variable for where I want to stop in a list
@@ -151,17 +151,66 @@ class Template:
         print("Debit order has been updated with title, day of month and amount")
 
     def update_transfers_between_accounts(self):
-        percentage_to_transfer_to_monzo_account = self.transfers_between_accounts[0][0]
-        percentage_to_transfer_to_everyday = self.transfers_between_accounts[0][1]
-        amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
-        loans = self.transfers_between_accounts[0][10:13]
-        pensions = self.transfers_between_accounts[0][13:15]
+        """
+        Update account transfers
+        :return:
+        """
 
-        print("monzo", percentage_to_transfer_to_monzo_account)
-        print("everyday", percentage_to_transfer_to_everyday)
-        print("savings", amount_to_deposit_into_savings_pots)
-        print("loans", loans)
-        print("pensions", pensions)
+        # def strip_percentage(string, symbol_to_strip):
+        #     return int(string.strip(symbol_to_strip))
+
+        # percentage_to_transfer_to_monzo_account = strip_percentage(
+        #     self.transfers_between_accounts[0][0][0], "%"
+        # )
+        # percentage_to_transfer_to_everyday = strip_percentage(
+        #     self.transfers_between_accounts[0][1][0], "%"
+        # )
+
+        # amount_to_deposit_into_savings_pots = self.transfers_between_accounts[0][4:10]
+        # loans = self.transfers_between_accounts[0][10:13]
+        # pensions = self.transfers_between_accounts[0][13:15]
+
+        def amount_as_number(lists):
+            number = [eval(amount[1].strip("£")) for amount in lists]
+            amount = []
+
+            for index in range(len(number)):
+                if type(number[index]) == tuple:
+                    res = "".join(str(ele) for ele in list(number[index]))
+                    amount.append(float(res))
+                else:
+                    amount.append(number[index])
+
+            return amount
+
+        amount_to_deposit_into_savings_pots = [
+            ["", "£10.00"],
+            ["", "£1,620.00"],
+            ["", "£6.00"],
+            ["", "£3.00"],
+            ["", "£50.00"],
+            ["", "£3.00"],
+        ]
+
+        update_savings_pot = {
+            "start_row": 47,
+            "end_row": 52,
+            "stop_in_list": 12,
+            "start_column": "L",
+            "end_column": "L",
+            "lists": amount_as_number(amount_to_deposit_into_savings_pots),
+        }
+
+        self.update_rows_and_columns(update_savings_pot)
+
+        print("update", self.data_to_update_spreadsheet_with)
+        print("savings", amount_as_number(amount_to_deposit_into_savings_pots))
+
+        # print("monzo", percentage_to_transfer_to_monzo_account)
+        # print ("every day", percentage_to_transfer_to_everyday)
+        # print("savings", amount_to_deposit_into_savings_pots)
+        # print("loans", loans)
+        # print("pensions", pensions)
 
     def update_data(self):
         """
@@ -171,16 +220,16 @@ class Template:
         """
 
         update_account_balances = {
-            "start": 5,
-            "end": 21,
+            "start_row": 5,
+            "end_row": 21,
             "stop_in_list": 12,
             "start_column": "BE",
             "end_column": "DP",
             "lists": self.account_balances[0],
         }
         update_reserve_from_previous_year = {
-            "start": 25,
-            "end": 41,
+            "start_row": 25,
+            "end_row": 41,
             "stop_in_list": 3,
             "start_column": "BI",
             "end_column": "BK",

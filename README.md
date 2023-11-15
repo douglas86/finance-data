@@ -29,10 +29,11 @@ This is the third project for Code Institute.
   - [Features](#features)
 - [Testing](#testing)
   - [Delete old spreadsheet file when creating a new spreadsheet](#delete-old-spreadsheet-file-when-creating-a-new-spreadsheet)
+  - [Tested that it correctly creates a spreadsheet based on year](#tested-that-it-correctly-creates-a-spreadsheet-based-on-year)
 - [Plans for the future of this project](#plans-for-the-future-of-this-project)
   - [Add a total tab](#add-a-total-tab)
   - [Debit order calculations](#debit-orders-calculations)
-  - [Spreadsheet and terminal needs to be interchangeable](#spreadsheet-and-terminal-needs-to-be-interchangeable)
+  - [Spreadsheet and terminal need to be interchangeable](#spreadsheet-and-terminal-need-to-be-interchangeable)
 - [Credits](#credits)
 
 ---
@@ -179,6 +180,14 @@ This image shows how the function looks place this in the run.py file when you n
 You can find the file id from the address bar
 
 ![file id.png](assets/images/readme/file%20id.png)
+
+### [Tested that it correctly creates a spreadsheet based on year](#table-of-content)
+
+- To test if is correctly creates a spreadsheet based on year
+- I can change the current_year variable in settings.py
+- I changed that variable to 2024
+
+![2024_spreadsheet.png](assets/images/readme/2024_spreadsheet.png)
 
 ---
 

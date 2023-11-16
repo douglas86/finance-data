@@ -72,7 +72,10 @@ class Options:
         Used to show what options are available
         :return:
         """
-        while True:
+
+        flag = True
+
+        while flag:
             # print out options to select
             print(
                 "Please enter an option from one of the following only type the number:"
@@ -90,9 +93,10 @@ class Options:
 
     def switch_case(self, number):
         """
-        Determines were to send data to based on option selected
+        Determines were to send data, once a number is pressed
         :return:
         """
+
         match number:
             case 1:
                 self.salary_option()
@@ -114,6 +118,8 @@ class Options:
             print("Please, enter the option that you are wanting?")
             print("1. Do you want to update your salary")
             print("2. What is  the name of your company")
+
+            number = float(input("Please enter your data here?"))
 
     def daily_spending_option(self):
         print("Daily Spending option was selected")

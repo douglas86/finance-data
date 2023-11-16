@@ -22,4 +22,5 @@ def main():
         options.select_option()
 
 
-main()
+if __name__ == "__main__":
+    main()

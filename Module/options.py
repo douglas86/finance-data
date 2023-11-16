@@ -6,7 +6,27 @@ class Options:
     All the options get selected from this class
     """
 
-    def select_option(self):
+    def __init__(self):
+        main = self.__main__()
+
+    def switch_case(self, number):
+        """
+        Determines were to send data to based on option selected
+        :return:
+        """
+        match number:
+            case 1:
+                print("You entered the number 1")
+            case 2:
+                print("You entered the number 2")
+            case 3:
+                print("You entered the number 3")
+            case 4:
+                print("You entered the number 4")
+            case 5:
+                print("You entered the number 5")
+
+    def __main__(self):
         """
         Used to select the initial options
         :return:
@@ -22,18 +42,7 @@ class Options:
             # validation for if number and between 1 and 5
             number = check_number_and_option(5)
 
-            # switch case depending on what option you selected
-            match number:
-                case 1:
-                    print("You entered the number 1")
-                case 2:
-                    print("You entered the number 2")
-                case 3:
-                    print("You entered the number 3")
-                case 4:
-                    print("You entered the number 4")
-                case 5:
-                    print("You entered the number 5")
+            self.switch_case(number)
 
 
 options = Options()

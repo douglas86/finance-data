@@ -12,6 +12,17 @@ class Validators:
             assert 0 < number <= self.option and type(number) == int
             return number
         except AssertionError:
-            print("Value must be between 1 and 5")
+            print(f"Value must be between 1 and {self.option}")
+        except ValueError:
+            print("You must enter a number?")
+
+    def check_float_number(self):
+        try:
+            number = float(input("Please enter the amount in £"))
+            assert 0 < number <= self.option and type(number) == float
+            if len(str(number).split(".")[-1]) != 2:
+                raise ValueError
+        except AssertionError:
+            print(f"Value must be between 1 and {self.option}")
         except ValueError:
             print("You must enter a number?")

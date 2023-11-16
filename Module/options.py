@@ -114,12 +114,22 @@ class Options:
         Options related to your salary
         :return:
         """
+
+        def switch_case(num):
+            match num:
+                case 1:
+                    print("salary has been updated")
+                case 2:
+                    print("name of company has been updated")
+
         while True:
             print("Please, enter the option that you are wanting?")
             print("1. Do you want to update your salary")
             print("2. What is  the name of your company")
 
-            number = float(input("Please enter your data here?"))
+            number = Validators(option=2).check_float_number()
+
+            switch_case(number)
 
     def daily_spending_option(self):
         print("Daily Spending option was selected")

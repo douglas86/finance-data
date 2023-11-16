@@ -29,6 +29,11 @@ class Options:
             self.data["growth_rate"] = getting[5]
             self.data["total_account_balances"] = getting[6]
         else:
+            putting = (
+                template.open_spreadsheet()
+                .worksheet(current_month)
+                .batch_update(self.data_to_be_updated)
+            )
             print("You have entered the incorrect crud_operations")
 
     def start(self):
@@ -115,21 +120,35 @@ class Options:
         :return:
         """
 
+        validator = Validators(option=2)
+        salary = self.data['deposit'][0][-1]
+        company = self.data['deposit'][0][1] if self.data['deposit'][0][1] == 'Salary' else False
+        flag = True
+
         def switch_case(num):
             match num:
                 case 1:
-                    print("salary has been updated")
+                    print(f"Your current salary is: {salary}")
+                    sal = validator.check_pound_amount()
+                    if sal:
+                        self.data_to_be_updated.append({"range": "G10", "values": [[num]]})
+                        return True
                 case 2:
                     print("name of company has been updated")
 
-        while True:
+        while flag:
             print("Please, enter the option that you are wanting?")
-            print("1. Do you want to update your salary")
-            print("2. What is  the name of your company")
+            print(f'Your current salary is: {self.data['deposit'][0][-1]}')
+            print(f'{company if company else "You have not specified a company name"}')
+            print(f'')
+            print("1. Do you want to update your salary?")
+            print("2. Do you want to update your companies name?")
 
-            number = Validators(option=2).check_float_number()
+            number = validator.check_number_and_option()
 
             switch_case(number)
+
+
 
     def daily_spending_option(self):
         print("Daily Spending option was selected")

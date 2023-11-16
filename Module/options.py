@@ -1,4 +1,4 @@
-from Module.validators import check_number_and_option
+from Module.validators import Validators
 from Module.template import template
 from Module.settings import current_month
 
@@ -9,6 +9,7 @@ class Options:
     """
 
     data = {}
+    data_to_be_updated = []
 
     def __iter__(self, crud_operation, lists=None):
         """
@@ -27,7 +28,6 @@ class Options:
             self.data["transfers"] = getting[4]
             self.data["growth_rate"] = getting[5]
             self.data["total_account_balances"] = getting[6]
-            print("data", self.data)
         else:
             print("You have entered the incorrect crud_operations")
 
@@ -74,6 +74,9 @@ class Options:
         """
         while True:
             # print out options to select
+            print(
+                "Please enter an option from one of the following only type the number:"
+            )
             print("1. Salary")
             print("2. Daily Spending")
             print("3. Transfer Between Accounts")
@@ -81,7 +84,7 @@ class Options:
             print("5. Interest or Bank charges from accounts")
 
             # validation for if number and between 1 and 5
-            number = check_number_and_option(5)
+            number = Validators(option=5).check_number_and_option()
 
             self.switch_case(number)
 
@@ -103,7 +106,14 @@ class Options:
                 self.interest_bank_charges_option()
 
     def salary_option(self):
-        print("Salary option was selected")
+        """
+        Options related to your salary
+        :return:
+        """
+        while True:
+            print("Please, enter the option that you are wanting?")
+            print("1. Do you want to update your salary")
+            print("2. What is  the name of your company")
 
     def daily_spending_option(self):
         print("Daily Spending option was selected")

@@ -6,12 +6,21 @@ class Options:
     All the options get selected from this class
     """
 
+    get_data_for_current_month = []
+
     def start(self):
         """
         Initially starts this class
         :return:
         """
+        self.get_data()
         self.options()
+
+    def get_data(self):
+        """
+        Gathers all initial data needed for the current month
+        :return:
+        """
 
     def options(self):
         """
@@ -38,15 +47,15 @@ class Options:
         """
         match number:
             case 1:
-                print("You entered the number 1")
+                self.salary_option()
             case 2:
-                print("You entered the number 2")
+                self.daily_spending_option()
             case 3:
-                print("You entered the number 3")
+                self.transfer_between_accounts_option()
             case 4:
-                print("You entered the number 4")
+                self.loan_credit_or_debit_order_option()
             case 5:
-                print("You entered the number 5")
+                self.interest_bank_charges_option()
 
     def salary_option(self):
         print("Salary option was selected")

@@ -1,4 +1,6 @@
 from Module.validators import check_number_and_option
+from Module.template import template
+from Module.settings import current_month
 
 
 class Options:
@@ -6,7 +8,28 @@ class Options:
     All the options get selected from this class
     """
 
-    get_data_for_current_month = []
+    data = {}
+
+    def __iter__(self, crud_operation, lists=None):
+        """
+        Special built-in function to iterate over a list, dictionary or tuple
+        :param crud_operation: only pass in get if needing to get data from spreadsheet
+        :return:
+        """
+        if crud_operation == "get":
+            getting = (
+                template.open_spreadsheet().worksheet(current_month).batch_get(lists)
+            )
+            self.data["deposit"] = getting[0]
+            self.data["withdraw"] = getting[1]
+            self.data["deposit_withdraw_totals"] = getting[2]
+            self.data["debit_orders"] = getting[3]
+            self.data["transfers"] = getting[4]
+            self.data["growth_rate"] = getting[5]
+            self.data["total_account_balances"] = getting[6]
+            print("data", self.data)
+        else:
+            print("You have entered the incorrect crud_operations")
 
     def start(self):
         """
@@ -21,6 +44,28 @@ class Options:
         Gathers all initial data needed for the current month
         :return:
         """
+
+        # 1st list: gets deposit information
+        # 2nd list: gets withdraw information
+        # 3rd list: gets totals of deposit, withdraw and balance
+        # 4th list: gets debit orders and its data
+        # 5th list: gets transfer between accounts data
+        # 6th list: gets interest and bank charges
+        # 7th list: gets growth rate and reserve/payback on all accounts
+        # 8th list: gets total account balances on all accounts
+        self.__iter__(
+            "get",
+            [
+                "C10:L15",
+                "C17:L31",
+                "C33:L36",
+                "C43:G57",
+                "H43:L57",
+                "S12:T27",
+                "AC12:AG27",
+                "AH12:AH27",
+            ],
+        )
 
     def options(self):
         """

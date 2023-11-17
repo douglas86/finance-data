@@ -162,6 +162,7 @@ Flow chart can be seen here as a [PDF](assets/pdf%20documents/Finanace2.odg) doc
 - The second opening that I left for a pension fund under reserve will always be at zero as the one above will take
   both pension funds into account as it works on the balance of both
 - Loans are based on a 3-month deposit as I want to see how long it will take until the loan is paid back
+- The Program asks for Salary and Company name and updates it in the current_month that you are on
 
 ---
 

@@ -10,3 +10,7 @@ def delete_spreadsheet(file_id):
     """
     GSPREAD_CLIENT.del_spreadsheet(file_id=file_id)
     print("File deleted")
+
+
+def strip_away_pound():
+    symbol = "£3,000.00"

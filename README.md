@@ -30,6 +30,7 @@ This is the third project for Code Institute.
 - [Testing](#testing)
   - [Delete old spreadsheet file when creating a new spreadsheet](#delete-old-spreadsheet-file-when-creating-a-new-spreadsheet)
   - [Tested that it correctly creates a spreadsheet based on year](#tested-that-it-correctly-creates-a-spreadsheet-based-on-year)
+  - [Check if option and number correct](#check-if-option-and-number-correct)
 - [Plans for the future of this project](#plans-for-the-future-of-this-project)
   - [Add a total tab](#add-a-total-tab)
   - [Debit order calculations](#debit-orders-calculations)
@@ -188,6 +189,18 @@ You can find the file id from the address bar
 - I changed that variable to 2024
 
 ![2024_spreadsheet.png](assets/images/readme/2024_spreadsheet.png)
+
+### [Check if option and number correct](#table-of-content)
+
+- I have created a check_number_and_option validator method
+- You need to pass in option number and an input
+- Option number is so that you can select from one of the numbers above in the print statements
+- There is validation on the input, the input needs to be an integer from the options
+- For example, if the options are from 1 to 5 it will only accept that
+- Once the correct option is selected it will take you to that option where certain criteria can be performed
+- During the testing of this I created functions in the test.py file, as It takes to long to run the code to get 
+  from the spreadsheet every time, and it uses my api limit to often
+- When I was happy with the results, I would implement that logic in my program and run it to test it out
 
 ---
 

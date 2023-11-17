@@ -2,7 +2,7 @@ from Module.validators import Validators
 from Module.template import template
 from Module.settings import current_month
 
-from Module.tests import exit_loop
+from Module.tests import strip_away_pound
 
 
 class Options:
@@ -45,7 +45,6 @@ class Options:
         """
         self.get_data()
         self.options()
-        # exit_loop()
 
     def get_data(self):
         """

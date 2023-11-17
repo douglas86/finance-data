@@ -111,29 +111,6 @@ class Options:
                     case 5:
                         self.interest_bank_charges_option()
 
-            # validation for if number and between 1 and 5
-            # number = Validators(option=5).check_number_and_option()
-            #
-            # self.switch_case(number)
-
-    def switch_case(self, number):
-        """
-        Determines were to send data, once a number is pressed
-        :return:
-        """
-
-        match number:
-            case 1:
-                self.salary_option()
-            case 2:
-                self.daily_spending_option()
-            case 3:
-                self.transfer_between_accounts_option()
-            case 4:
-                self.loan_credit_or_debit_order_option()
-            case 5:
-                self.interest_bank_charges_option()
-
     def salary_option(self):
         """
         Options related to your salary

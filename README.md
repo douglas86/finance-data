@@ -129,7 +129,7 @@ You should see a screen that looks something like this.
 
 ### [Flow Chart Diagram](#table-of-content)
 
-Flow chart can be seen here as a [PDF](assets/pdf%20documents/Finanace2.odg) document
+Flow chart can be seen here as a [PDF](assets/pdf_documents/Finanace.pdf) document
 
 ---
 

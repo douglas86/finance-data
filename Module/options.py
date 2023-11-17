@@ -2,12 +2,15 @@ from Module.validators import Validators
 from Module.template import template
 from Module.settings import current_month
 
+from utils.helpers import select_option, help_with_anything_else
+
 
 class Options:
     """
     All the options get selected from this class
     """
 
+    # data from spreadsheet
     data = {}
     data_to_be_updated = []
 
@@ -17,8 +20,11 @@ class Options:
         :param crud_operation: only pass in get if needing to get data from spreadsheet
         :return:
         """
+        # opens up spreadsheet with current month
         opening = template.open_spreadsheet().worksheet(current_month)
 
+        # fetches all data from spreadsheet
+        # loads data to self.data variable
         if crud_operation == "get":
             getting = (
                 opening.batch_get(lists)
@@ -30,6 +36,7 @@ class Options:
             self.data["transfers"] = getting[4]
             self.data["growth_rate"] = getting[5]
             self.data["total_account_balances"] = getting[6]
+        # updates spreadsheet when called
         else:
             opening.batch_update(self.data_to_be_updated)
 
@@ -77,19 +84,15 @@ class Options:
 
         while True:
             # print out options to select
-            print(
-                "Please enter an option from one of the following only type the number:"
-            )
             print("1. Salary")
             print("2. Daily Spending")
             print("3. Transfer Between Accounts")
             print("4. Loan, Credit Card or Debit order")
             print("5. Interest or Bank charges from accounts")
+            print("6. Quit")
 
-            number = input("Please select an option from above?\n")
-
-            validators = Validators(number=number, option=5)
-
+            number = select_option()
+            validators = Validators(number=number, option=6)
             correct_answer = validators.check_number_and_option()
 
             if correct_answer:
@@ -104,6 +107,8 @@ class Options:
                         self.loan_credit_or_debit_order_option()
                     case 5:
                         self.interest_bank_charges_option()
+                    case 6:
+                        break
 
     def salary_option(self):
         """
@@ -115,14 +120,13 @@ class Options:
         company = self.data['deposit'][0][1]
 
         while True:
-            print('Please, enter the option that you are wanting?')
             print(f'Your current salary is: {salary if salary != '£0' else "You have not entered a salary yet!"}')
             print(f'{company if company != 'Salary' else "You have not yet entered a company name"}')
             print(f'1. Update salary: {salary}')
             print(f'2. Update company: {company}')
             print(f'3. Quit')
 
-            number = input('Please select an option from above?\n')
+            number = select_option()
             validators = Validators(number=number, option=3)
             correct_answer = validators.check_number_and_option()
 
@@ -137,14 +141,14 @@ class Options:
                                 "range": "G10",
                                 "values": [[float(salary_number)]]
                             })
-                            print('Do you need help with anything else?')
+                            help_with_anything_else()
                     case 2:
                         company_name = input('Please enter the name of your company?\n')
                         self.data_to_be_updated.append({
                             "range": "C10",
                             "values": [[str(company_name)]]
                         })
-                        print('Do you need help with anything else?')
+                        help_with_anything_else()
                     case 3:
                         self.__iter__("updating")
                         self.data_to_be_updated = []

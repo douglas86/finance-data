@@ -139,9 +139,15 @@ class Options:
                             })
                             print('Do you need help with anything else?')
                     case 2:
-                        print('Option 2 selected')
+                        company_name = input('Please enter the name of your company?\n')
+                        self.data_to_be_updated.append({
+                            "range": "C10",
+                            "values": [[str(company_name)]]
+                        })
+                        print('Do you need help with anything else?')
                     case 3:
                         self.__iter__("updating")
+                        self.data_to_be_updated = []
                         print('Salary data has been updated!')
                         break
 

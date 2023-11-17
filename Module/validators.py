@@ -31,15 +31,3 @@ class Validators:
             print("There must be no more than 2 decimal places")
         except ValueError:
             print("Your input is not a number")
-
-    def check_pound_amount(self):
-        try:
-            number = float(input("Please enter an amount in £\n"))
-            if type(number) == float and len(str(number).split(".")[-1]) <= 2:
-                return number
-            else:
-                raise AssertionError
-        except AssertionError:
-            print("There must be no more than 2 decimal places")
-        except ValueError:
-            print("Your input is not a number")

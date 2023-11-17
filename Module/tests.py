@@ -13,4 +13,14 @@ def delete_spreadsheet(file_id):
 
 
 def strip_away_pound():
-    symbol = "£3,000.00"
+    # symbol = "£3,000.00"
+    data = []
+
+    while True:
+        number = input("Please enter your salary?\n")
+        validators = Validators(number=number, option=2)
+        correct_answer = validators.check_number()
+
+        if correct_answer:
+            data.append(float(number))
+            break

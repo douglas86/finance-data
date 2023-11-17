@@ -2,8 +2,6 @@ from Module.validators import Validators
 from Module.template import template
 from Module.settings import current_month
 
-from Module.tests import strip_away_pound
-
 
 class Options:
     """
@@ -19,9 +17,11 @@ class Options:
         :param crud_operation: only pass in get if needing to get data from spreadsheet
         :return:
         """
+        opening = template.open_spreadsheet().worksheet(current_month)
+
         if crud_operation == "get":
             getting = (
-                template.open_spreadsheet().worksheet(current_month).batch_get(lists)
+                opening.batch_get(lists)
             )
             self.data["deposit"] = getting[0]
             self.data["withdraw"] = getting[1]
@@ -31,12 +31,7 @@ class Options:
             self.data["growth_rate"] = getting[5]
             self.data["total_account_balances"] = getting[6]
         else:
-            putting = (
-                template.open_spreadsheet()
-                .worksheet(current_month)
-                .batch_update(self.data_to_be_updated)
-            )
-            print("You have entered the incorrect crud_operations")
+            opening.batch_update(self.data_to_be_updated)
 
     def start(self):
         """
@@ -121,22 +116,34 @@ class Options:
 
         while True:
             print('Please, enter the option that you are wanting?')
-            print(f'Your current salary is: {salary}')
+            print(f'Your current salary is: {salary if salary != '£0' else "You have not entered a salary yet!"}')
             print(f'{company if company != 'Salary' else "You have not yet entered a company name"}')
-            print('1. Do you want to update your salary')
-            print('2. Do you want to update your company name?')
+            print(f'1. Update salary: {salary}')
+            print(f'2. Update company: {company}')
+            print(f'3. Quit')
 
             number = input('Please select an option from above?\n')
-            validators = Validators(number=number, option=2)
+            validators = Validators(number=number, option=3)
             correct_answer = validators.check_number_and_option()
 
             if correct_answer:
                 match int(number):
                     case 1:
-                        print('Option 1 selected')
+                        salary_number = input('Please enter your salary amount?\n')
+                        valid = Validators(number=salary_number, option=3)
+                        check_salary = valid.check_number()
+                        if check_salary:
+                            self.data_to_be_updated.append({
+                                "range": "G10",
+                                "values": [[float(salary_number)]]
+                            })
+                            print('Do you need help with anything else?')
                     case 2:
                         print('Option 2 selected')
-                break
+                    case 3:
+                        self.__iter__("updating")
+                        print('Salary data has been updated!')
+                        break
 
     def daily_spending_option(self):
         print("Daily Spending option was selected")

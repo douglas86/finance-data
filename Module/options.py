@@ -155,6 +155,8 @@ class Options:
                         print('Salary data has been updated!')
                         break
 
+            help_with_anything_else()
+
     def daily_spending_option(self):
         print("Daily Spending option was selected")
 

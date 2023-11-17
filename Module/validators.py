@@ -3,18 +3,20 @@ class Validators:
     Class to check if data entering is correct
     """
 
-    def __init__(self, option):
+    def __init__(self, number, option):
+        self.number = number
         self.option = option
 
     def check_number_and_option(self):
         try:
-            number = int(input("Please select an option from above?\n"))
-            assert 0 < number <= self.option and type(number) == int
-            return number
+            assert 0 < int(self.number) <= self.option
+            return True
         except AssertionError:
             print(f"Value must be between 1 and {self.option}")
+            return False
         except ValueError:
             print("You must enter a number?")
+            return False
 
     def check_pound_amount(self):
         try:

@@ -2,6 +2,8 @@ from Module.validators import Validators
 from Module.template import template
 from Module.settings import current_month
 
+from Module.tests import exit_loop
+
 
 class Options:
     """
@@ -41,8 +43,9 @@ class Options:
         Initially starts this class
         :return:
         """
-        self.get_data()
-        self.options()
+        # self.get_data()
+        # self.options()
+        exit_loop()
 
     def get_data(self):
         """

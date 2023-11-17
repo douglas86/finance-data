@@ -4,6 +4,8 @@ from Module.settings import current_month
 
 from utils.helpers import select_option, help_with_anything_else
 
+from Module.tests import daily_spending
+
 
 class Options:
     """
@@ -45,8 +47,10 @@ class Options:
         Initially starts this class
         :return:
         """
-        self.get_data()
-        self.options()
+        # self.get_data()
+        # self.options()
+
+        self.daily_spending_option()
 
     def get_data(self):
         """
@@ -158,7 +162,7 @@ class Options:
             help_with_anything_else()
 
     def daily_spending_option(self):
-        print("Daily Spending option was selected")
+        daily_spending()
 
     def transfer_between_accounts_option(self):
         print("Transfer between accounts option was selected")

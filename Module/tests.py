@@ -9,3 +9,7 @@ def delete_spreadsheet(file_id):
     """
     GSPREAD_CLIENT.del_spreadsheet(file_id=file_id)
     print("File deleted")
+
+
+def daily_spending():
+    print("daily spending")

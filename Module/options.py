@@ -140,34 +140,27 @@ class Options:
         :return:
         """
 
-        validator = Validators(option=2)
         salary = self.data['deposit'][0][-1]
         company = self.data['deposit'][0][1]
-        flag = True
 
-        def switch_case(num):
-            match num:
-                case 1:
-                    print(f"Your current salary is: {salary}")
-                    sal = validator.check_pound_amount()
-                    if sal:
-                        self.data_to_be_updated.append({"range": "G10", "values": [[num]]})
-                case 2:
-                    print("name of company has been updated")
-
-        while flag:
-            print("Please, enter the option that you are wanting?")
-            print(f'Your current salary is: {self.data['deposit'][0][-1]}')
+        while True:
+            print('Please, enter the option that you are wanting?')
+            print(f'Your current salary is: {salary}')
             print(f'{company if company != 'Salary' else "You have not yet entered a company name"}')
-            print(f'')
-            print("1. Do you want to update your salary?")
-            print("2. Do you want to update your companies name?")
+            print('1. Do you want to update your salary')
+            print('2. Do you want to update your company name?')
 
-            number = validator.check_number_and_option()
+            number = input('Please select an option from above?\n')
+            validators = Validators(number=number, option=2)
+            correct_answer = validators.check_number_and_option()
 
-            switch_case(number)
-
-            break
+            if correct_answer:
+                match int(number):
+                    case 1:
+                        print('Option 1 selected')
+                    case 2:
+                        print('Option 2 selected')
+                break
 
     def daily_spending_option(self):
         print("Daily Spending option was selected")

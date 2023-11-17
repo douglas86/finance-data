@@ -43,9 +43,9 @@ class Options:
         Initially starts this class
         :return:
         """
-        # self.get_data()
-        # self.options()
-        exit_loop()
+        self.get_data()
+        self.options()
+        # exit_loop()
 
     def get_data(self):
         """
@@ -81,9 +81,7 @@ class Options:
         :return:
         """
 
-        flag = True
-
-        while flag:
+        while True:
             # print out options to select
             print(
                 "Please enter an option from one of the following only type the number:"
@@ -94,10 +92,29 @@ class Options:
             print("4. Loan, Credit Card or Debit order")
             print("5. Interest or Bank charges from accounts")
 
-            # validation for if number and between 1 and 5
-            number = Validators(option=5).check_number_and_option()
+            number = input("Please select an option from above?\n")
 
-            self.switch_case(number)
+            validators = Validators(number=number, option=5)
+
+            correct_answer = validators.check_number_and_option()
+
+            if correct_answer:
+                match int(number):
+                    case 1:
+                        self.salary_option()
+                    case 2:
+                        self.daily_spending_option()
+                    case 3:
+                        self.transfer_between_accounts_option()
+                    case 4:
+                        self.loan_credit_or_debit_order_option()
+                    case 5:
+                        self.interest_bank_charges_option()
+
+            # validation for if number and between 1 and 5
+            # number = Validators(option=5).check_number_and_option()
+            #
+            # self.switch_case(number)
 
     def switch_case(self, number):
         """

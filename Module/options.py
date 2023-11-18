@@ -48,10 +48,8 @@ class Options:
         Initially starts this class
         :return:
         """
-        # self.get_data()
-        # self.options()
-
-        self.daily_spending_option()
+        self.get_data()
+        self.options()
 
     def get_data(self):
         """
@@ -169,6 +167,19 @@ class Options:
         """
         monthly_expenses = {}
         table = PrettyTable()
+        withdraw = self.data['withdraw']
+
+        column1 = []
+        column2 = []
+
+        if len(withdraw) > 0:
+            for i in range(len(withdraw)):
+                # Pound needs to be striped away in value in monthly_expenses dictionary
+                monthly_expenses[withdraw[i][0]] = float(withdraw[i][-1].strip('£'))
+
+        print('data', self.data)
+        print('monthly expenses', monthly_expenses)
+        print('withdraw', withdraw)
 
         def item_name(item):
             while True:
@@ -268,11 +279,10 @@ class Options:
             validators = Validators(number=option, option=20)
             check_answer = validators.check_number_and_option()
 
-
             if check_answer:
                 switch_case(option)
 
-
+                print('monthly expenses', monthly_expenses)
 
     def transfer_between_accounts_option(self):
         print("Transfer between accounts option was selected")

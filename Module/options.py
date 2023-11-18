@@ -170,12 +170,11 @@ class Options:
         monthly_expenses = {}
         table = PrettyTable()
 
-
         def item_name(item):
             while True:
                 price = input('How much is this purchase?\n')
-                validators = Validators(number=price, option=20)
-                amount = validators.check_number()
+                valid = Validators(number=price, option=20)
+                amount = valid.check_number()
 
                 if amount:
                     try:

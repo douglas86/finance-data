@@ -268,12 +268,10 @@ class Options:
             validators = Validators(number=option, option=20)
             check_answer = validators.check_number_and_option()
 
-            print('monthly', monthly_expenses)
 
             if check_answer:
                 switch_case(option)
 
-                print('monthlyB', monthly_expenses)
 
 
     def transfer_between_accounts_option(self):

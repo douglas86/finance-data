@@ -4,7 +4,7 @@ from Module.settings import current_month
 
 from utils.helpers import select_option, help_with_anything_else
 
-from Module.tests import daily_spending
+from Module.tests import c
 
 
 class Options:
@@ -162,7 +162,8 @@ class Options:
             help_with_anything_else()
 
     def daily_spending_option(self):
-        daily_spending()
+        # daily_spending()
+        c()
 
     def transfer_between_accounts_option(self):
         print("Transfer between accounts option was selected")

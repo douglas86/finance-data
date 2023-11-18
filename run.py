@@ -1,7 +1,7 @@
-from gspread.exceptions import SpreadsheetNotFound
+# from gspread.exceptions import SpreadsheetNotFound
 
 
-from Module.template import template
+# from Module.template import template
 from Module.options import options
 
 

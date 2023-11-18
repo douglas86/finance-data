@@ -1,10 +1,11 @@
+from prettytable import PrettyTable
+
+
 from Module.validators import Validators
 from Module.template import template
 from Module.settings import current_month
 
 from utils.helpers import select_option, help_with_anything_else
-
-from Module.tests import c
 
 
 class Options:
@@ -162,8 +163,119 @@ class Options:
             help_with_anything_else()
 
     def daily_spending_option(self):
-        # daily_spending()
-        c()
+        """
+        Updating on monthly expenses
+        :return:
+        """
+        monthly_expenses = {}
+        table = PrettyTable()
+
+
+        def item_name(item):
+            while True:
+                price = input('How much is this purchase?\n')
+                validators = Validators(number=price, option=20)
+                amount = validators.check_number()
+
+                if amount:
+                    try:
+                        monthly_expenses[item] += float(price)
+                    except KeyError:
+                        monthly_expenses[item] = float(price)
+                    break
+
+        def switch_case(decision):
+            match int(decision):
+                case 1:
+                    item_name('Clothing and Footwear')
+                case 2:
+                    item_name('Technology')
+                case 3:
+                    item_name('Groceries')
+                case 4:
+                    item_name('Eating Out')
+                case 5:
+                    item_name('Luxury Items')
+                case 6:
+                    item_name('Personal Care')
+                case 7:
+                    item_name('Transport')
+                case 8:
+                    item_name('General')
+                case 9:
+                    item_name('Bills')
+                case 10:
+                    item_name('Charity')
+                case 11:
+                    item_name('Entertainment')
+                case 12:
+                    item_name('Gifts')
+                case 13:
+                    item_name('Herbs, spices and sources')
+                case 14:
+                    item_name('Holidays')
+                case 15:
+                    item_name('Household chemicals')
+                case 16:
+                    item_name('Laundry')
+                case 17:
+                    item_name('Education')
+                case 18:
+                    item_name('Home Improvements')
+                case 19:
+                    item_name('Family Assistance')
+                case 20:
+                    return False
+
+        def table_prettified():
+            table.field_names = ['column1', 'column2', 'column3', 'column4']
+            table.add_row([
+                "1. Clothing and Footwear",
+                "2. Technology",
+                "3. Groceries",
+                "4. Eating Out"
+            ])
+            table.add_row([
+                "5. Luxury Items",
+                "6. Personal Care",
+                "7. Transport",
+                "8. General"
+            ])
+            table.add_row([
+                "9. Bills",
+                "10. Charity",
+                "11. Entertainment",
+                "12. Gifts"
+            ])
+            table.add_row([
+                "13. Herbs, spices and sources",
+                "14. Holidays",
+                "15. Household chemicals",
+                "16. Laundry"
+            ])
+            table.add_row(([
+                "17. Education",
+                "18. Home Improvements",
+                "19. Family Assistance",
+                "20. Quit"
+            ]))
+
+        table_prettified()
+
+        while True:
+            print(table)
+
+            option = select_option()
+            validators = Validators(number=option, option=20)
+            check_answer = validators.check_number_and_option()
+
+            print('monthly', monthly_expenses)
+
+            if check_answer:
+                switch_case(option)
+
+                print('monthlyB', monthly_expenses)
+
 
     def transfer_between_accounts_option(self):
         print("Transfer between accounts option was selected")

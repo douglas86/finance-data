@@ -2,3 +2,4 @@
 heroku3~=5.2.1
 gspread~=5.12.0
 python-dotenv~=1.0.0
+prettytable~=3.9.0

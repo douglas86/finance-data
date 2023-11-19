@@ -48,10 +48,8 @@ class Options:
         Initially starts this class
         :return:
         """
-        # self.get_data()
-        # self.options()
-
-        self.daily_spending_option()
+        self.get_data()
+        self.options()
 
     def get_data(self):
         """
@@ -164,134 +162,160 @@ class Options:
 
     def daily_spending_option(self):
         """
-        Updating on monthly expenses
+        Updates monthly expenses
         :return:
         """
 
+        table = PrettyTable()
+        monthly_expenses = {}
+        withdraw = self.data['withdraw']
+
+        if len(withdraw) > 0:
+            for i in range(len(withdraw)):
+                monthly_expenses[withdraw[i][0]] = float(withdraw[i][-1].strip('£'))
+
+        def table_prettified():
+            """
+            Draws out the table
+            :return:
+            """
+            table.field_names = ['column1', 'column2', 'column3', 'column4']
+            table.add_row([
+                "1. Clothing and Footwear",
+                "2. Technology",
+                "3. Groceries",
+                "4. Eating Out"
+            ])
+            table.add_row([
+                "5. Luxury Items",
+                "6. Personal Care",
+                "7. Transport",
+                "8. General"
+            ])
+            table.add_row([
+                "9. Bills",
+                "10. Charity",
+                "11. Entertainment",
+                "12. Gifts"
+            ])
+            table.add_row([
+                "13. Herbs, spices and sources",
+                "14. Holidays",
+                "15. Household chemicals",
+                "16. Laundry"
+            ])
+            table.add_row(([
+                "17. Education",
+                "18. Home Improvements",
+                "19. Family Assistance",
+                "20. Quit"
+            ]))
+
+        def item_name(item):
+            while True:
+                price = input("How much is this purchase?\n")
+                valid = Validators(number=price, option=20)
+                answer = valid.check_number()
+
+                if answer:
+                    try:
+                        monthly_expenses[item] += float(price)
+                    except KeyError:
+                        monthly_expenses[item] = float(price)
+                    break
+
+        def columns(lists, start_column):
+            """
+            Updates columns with data
+            :param lists:
+            :param start_column:
+            :return:
+            """
+            for num in range(len(lists)):
+                self.data_to_be_updated.append({
+                    "range": f'{start_column}{17+num}',
+                    "values": [[lists[num]]]
+                })
+
+        def update_spreadsheet_with_expenses():
+            """
+            Updates spreadsheet when a Quit option is selected
+            :return:
+            """
+            column1_title = []
+            column1_price = []
+            column2_title = []
+            column2_price = []
+
+            for key, value in monthly_expenses.items():
+                if len(column1_title) < 15:
+                    column1_title.append(key)
+                    column1_price.append(value)
+                else:
+                    column2_title.append(key)
+                    column2_price.append(value)
+
+            columns(column1_title, "C")
+            columns(column1_price, "G")
+            columns(column2_title, "H")
+            columns(column2_price, "L")
+
+            self.__iter__("updating")
+            self.data_to_be_updated = []
+
+        table_prettified()
+
         while True:
-            price = input('How much is this purchase?\n')
-            valid = Validators(number=price, option=2)
-            amount = valid.check_number()
+            # prints table to the terminal
+            print(table)
 
-            print('amount', amount)
-        # monthly_expenses = {}
-        # table = PrettyTable()
-        # withdraw = self.data['withdraw']
+            option = select_option()
+            validator = Validators(number=option, option=20)
+            check_answer = validator.check_number_and_option()
 
-        # column1 = []
-        # column2 = []
-
-        # if len(withdraw) > 0:
-        #     for i in range(len(withdraw)):
-        #         # Pound needs to be striped away in value in monthly_expenses dictionary
-        #         monthly_expenses[withdraw[i][0]] = float(withdraw[i][-1].strip('£'))
-        #
-        # print('data', self.data)
-        # print('monthly expenses', monthly_expenses)
-        # print('withdraw', withdraw)
-
-        # def item_name(item):
-        #     while True:
-        #         price = input('How much is this purchase?\n')
-        #         valid = Validators(number=float(price), option=20)
-        #         amount = valid.check_number()
-        #
-        #         print('amount', amount)
-        #
-        #         if amount:
-        #             try:
-        #                 monthly_expenses[item] += float(price)
-        #             except KeyError:
-        #                 monthly_expenses[item] = float(price)
-        #             break
-        #
-        #         print('column1', column1)
-        #         print('column2', column2)
-        #
-        # def table_prettified():
-        #     table.field_names = ['column1', 'column2', 'column3', 'column4']
-        #     table.add_row([
-        #         "1. Clothing and Footwear",
-        #         "2. Technology",
-        #         "3. Groceries",
-        #         "4. Eating Out"
-        #     ])
-        #     table.add_row([
-        #         "5. Luxury Items",
-        #         "6. Personal Care",
-        #         "7. Transport",
-        #         "8. General"
-        #     ])
-        #     table.add_row([
-        #         "9. Bills",
-        #         "10. Charity",
-        #         "11. Entertainment",
-        #         "12. Gifts"
-        #     ])
-        #     table.add_row([
-        #         "13. Herbs, spices and sources",
-        #         "14. Holidays",
-        #         "15. Household chemicals",
-        #         "16. Laundry"
-        #     ])
-        #     table.add_row(([
-        #         "17. Education",
-        #         "18. Home Improvements",
-        #         "19. Family Assistance",
-        #         "20. Quit"
-        #     ]))
-        #
-        # table_prettified()
-        #
-        # while True:
-        #     print(table)
-        #
-        #     option = select_option()
-        #     validators = Validators(number=option, option=20)
-        #     check_answer = validators.check_number_and_option()
-        #
-        #     if check_answer:
-        #         match int(option):
-        #             case 1:
-        #                 item_name('Clothing and Footwear')
-        #             case 2:
-        #                 item_name('Technology')
-        #             case 3:
-        #                 item_name('Groceries')
-        #             case 4:
-        #                 item_name('Eating Out')
-        #             case 5:
-        #                 item_name('Luxury Items')
-        #             case 6:
-        #                 item_name('Personal Care')
-        #             case 7:
-        #                 item_name('Transport')
-        #             case 8:
-        #                 item_name('General')
-        #             case 9:
-        #                 item_name('Bills')
-        #             case 10:
-        #                 item_name('Charity')
-        #             case 11:
-        #                 item_name('Entertainment')
-        #             case 12:
-        #                 item_name('Gifts')
-        #             case 13:
-        #                 item_name('Herbs, spices and sources')
-        #             case 14:
-        #                 item_name('Holidays')
-        #             case 15:
-        #                 item_name('Household chemicals')
-        #             case 16:
-        #                 item_name('Laundry')
-        #             case 17:
-        #                 item_name('Education')
-        #             case 18:
-        #                 item_name('Home Improvements')
-        #             case 19:
-        #                 item_name('Family Assistance')
-        #             case 20:
-        #                 break
+            if check_answer:
+                match int(option):
+                    case 1:
+                        item_name('Clothing and Footwear')
+                    case 2:
+                        item_name('Technology')
+                    case 3:
+                        item_name('Groceries')
+                    case 4:
+                        item_name('Eating Out')
+                    case 5:
+                        item_name('Luxury Items')
+                    case 6:
+                        item_name('Personal Care')
+                    case 7:
+                        item_name('Transport')
+                    case 8:
+                        item_name('General')
+                    case 9:
+                        item_name('Bills')
+                    case 10:
+                        item_name('Charity')
+                    case 11:
+                        item_name('Entertainment')
+                    case 12:
+                        item_name('Gifts')
+                    case 13:
+                        item_name('Herbs, spices and sources')
+                    case 14:
+                        item_name('Holidays')
+                    case 15:
+                        item_name('Household chemicals')
+                    case 16:
+                        item_name('Laundry')
+                    case 17:
+                        item_name('Education')
+                    case 18:
+                        item_name('Home Improvements')
+                    case 19:
+                        item_name('Family Assistance')
+                    case 20:
+                        update_spreadsheet_with_expenses()
+                        break
 
     def transfer_between_accounts_option(self):
         print("Transfer between accounts option was selected")

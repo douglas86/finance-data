@@ -49,7 +49,7 @@ class Options:
         :return:
         """
 
-        # 2nd list: gets withdraw information
+        # gets withdraw information
         self.__iter__(
             "get",
             [

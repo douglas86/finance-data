@@ -65,6 +65,7 @@ class Options:
 
         while True:
             # print out options to select
+            print("Option 3 with quit this terminal")
             print("1. Salary")
             print("2. Daily Spending")
             print("3. Quit")

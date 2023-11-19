@@ -8,6 +8,12 @@ class Validators:
         self.option = option
 
     def check_number_and_option(self):
+        """
+        Checks:
+            checks if input is a number
+            checks if input is one of the option provided
+        :return:
+        """
         try:
             # check if number between 2 values
             assert 0 < int(self.number) <= self.option

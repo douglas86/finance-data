@@ -130,6 +130,7 @@ class Options:
                         salary_number = input('Please enter your salary amount?\n')
                         valid = Validators(number=salary_number, option=3)
                         check_salary = valid.check_number()
+                        print('salary', check_salary)
                         if check_salary:
                             self.data_to_be_updated.append({
                                 "range": "G10",

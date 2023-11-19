@@ -40,16 +40,3 @@ class Validators:
             return False
         else:
             return True
-
-    # def check_number(self):
-    #     try:
-    #         # splits number by full stop
-    #         splitting = str(self.number).split(".")
-    #         assert 0 < float(self.number) and 1 < len(splitting[-1]) >= 2 >= len(
-    #             splitting
-    #         )
-    #         return True
-    #     except AssertionError:
-    #         print("There must be no more than 2 decimal places")
-    #     except ValueError:
-    #         print("Your input is not a number")

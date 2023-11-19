@@ -40,3 +40,27 @@ class Validators:
             return False
         else:
             return True
+
+    def check_salary(self):
+        """
+        Checks:
+            check if no decimal return true
+            check if one or two decimal return true
+            check if more than three decimal returns false
+            check if negative number returns false
+            check if not a number return false
+        :return:
+        """
+        try:
+            splitting = self.number.split(".")
+            assert float(self.number) > 0
+            assert len(splitting) <= 2 and len(splitting[-1]) <= 2
+        except AssertionError:
+            print("There can't be a negative number")
+            print("Number can't have more than 2 decimal places")
+            return False
+        except ValueError:
+            print("Your input is not a number")
+            return False
+        else:
+            return True

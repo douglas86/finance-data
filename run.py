@@ -4,6 +4,8 @@
 # from Module.template import template
 from Module.options import options
 
+from Module.tests import testing
+
 
 def main():
     """
@@ -28,7 +30,8 @@ def main():
     #     template.create_spreadsheet()
     #     options.start()
 
-    options.start()
+    testing()
+    # options.start()
 
 
 if __name__ == "__main__":

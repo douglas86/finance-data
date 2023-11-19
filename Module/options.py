@@ -212,6 +212,11 @@ class Options:
             ]))
 
         def item_name(item):
+            """
+            Once item selection is selected, then ask for price and update the monthly expenses dictionary
+            :param item:
+            :return:
+            """
             while True:
                 price = input("How much is this purchase?\n")
                 valid = Validators(number=price, option=20)

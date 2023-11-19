@@ -147,28 +147,14 @@ class Options:
             :return:
             """
             table.field_names = ["column1", "column2", "column3"]
+            table.add_row(["1. Clothing and Footwear", "2. Technology", "3. Groceries"])
+            table.add_row(["4. Eating Out", "5. Luxury Items", "6. Personal Care"])
+            table.add_row(["7. Transport", "8. General", "9. Bills"])
             table.add_row(
                 [
-                    "1. Clothing and Footwear",
-                    "2. Technology",
-                    "3. Groceries",
-                    # "4. Eating Out",
-                ]
-            )
-            table.add_row(
-                [
-                    "5. Luxury Items",
-                    "6. Personal Care",
-                    "7. Transport",
-                    # "8. General"
-                ]
-            )
-            table.add_row(
-                [
-                    "9. Bills",
                     "10. Charity",
                     "11. Entertainment",
-                    # "12. Gifts"
+                    "12. Gifts",
                 ]
             )
             table.add_row(
@@ -176,19 +162,16 @@ class Options:
                     "13. Herbs, spices and sources",
                     "14. Holidays",
                     "15. Household chemicals",
-                    # "16. Laundry",
                 ]
             )
-            # table.add_row(
-            #     (
-            #         [
-            #             "17. Education",
-            #             "18. Home Improvements",
-            #             "19. Family Assistance",
-            #             "20. Quit",
-            #         ]
-            #     )
-            # )
+            table.add_row(
+                [
+                    "16. Laundry",
+                    "17. Education",
+                    "18. Home Improvements",
+                ]
+            )
+            table.add_row(["19. Family Assistance", "20. Airtime and Data", "21. Quit"])
 
         def item_name(item):
             """
@@ -253,9 +236,9 @@ class Options:
             # prints table to the terminal
             print(table)
 
-            print("Option 20 will quit this menu and update spreadsheet")
+            print("Option 21 will quit this menu and update spreadsheet")
             option = select_option()
-            validator = Validators(number=option, option=20)
+            validator = Validators(number=option, option=21)
             check_answer = validator.check_number_and_option()
 
             if check_answer:
@@ -299,6 +282,8 @@ class Options:
                     case 19:
                         item_name("Family Assistance")
                     case 20:
+                        item_name("Airtime and Data")
+                    case 21:
                         update_spreadsheet_with_expenses()
                         break
 

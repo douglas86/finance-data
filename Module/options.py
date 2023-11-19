@@ -30,13 +30,7 @@ class Options:
         # loads data to self.data variable
         if crud_operation == "get":
             getting = opening.batch_get(lists)
-            self.data["deposit"] = getting[0]
-            self.data["withdraw"] = getting[1]
-            self.data["deposit_withdraw_totals"] = getting[2]
-            self.data["debit_orders"] = getting[3]
-            self.data["transfers"] = getting[4]
-            self.data["growth_rate"] = getting[5]
-            self.data["total_account_balances"] = getting[6]
+            self.data["withdraw"] = getting[0]
         # updates spreadsheet when called
         else:
             opening.batch_update(self.data_to_be_updated)
@@ -55,25 +49,11 @@ class Options:
         :return:
         """
 
-        # 1st list: gets deposit information
         # 2nd list: gets withdraw information
-        # 3rd list: gets totals of deposit, withdraw and balance
-        # 4th list: gets debit orders and its data
-        # 5th list: gets transfer between accounts data
-        # 6th list: gets interest and bank charges
-        # 7th list: gets growth rate and reserve/payback on all accounts
-        # 8th list: gets total account balances on all accounts
         self.__iter__(
             "get",
             [
-                "C10:L15",
                 "C17:L31",
-                "C33:L36",
-                "C43:G57",
-                "H43:L57",
-                "S12:T27",
-                "AC12:AG27",
-                "AH12:AH27",
             ],
         )
 
@@ -252,6 +232,7 @@ class Options:
 
             self.__iter__("updating")
             self.data_to_be_updated = []
+            print("All expense data has been updated")
 
         table_prettified()
 

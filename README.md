@@ -35,6 +35,7 @@ This is the third project for Code Institute.
   - [Add a total tab](#add-a-total-tab)
   - [Debit order calculations](#debit-orders-calculations)
   - [Spreadsheet and terminal need to be interchangeable](#spreadsheet-and-terminal-need-to-be-interchangeable)
+  - [Balances need to be updated](#balances-need-to-be-updated)
 - [Credits](#credits)
 
 ---
@@ -139,7 +140,7 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finanace.pdf) docume
 
 - Create a spreadsheet that I can use to better handle my day-to-day expenses
 - Copies the balances over into the new spreadsheet from template 
-- All basic expenses get subtracted from my main Monzo account
+- All basic expenses get subtracted from my main Monzo account when updated to spreadsheet
 - My salary gets paid into Barclays then transferred based on a percentage to my Monzo account
 - Created space to take on three loans—be it borrowing from other people or taking a loan out at a bank
 - Created space for two pension funds as you don't ever need more than that
@@ -154,15 +155,11 @@ Flow chart can be seen here as a [PDF](assets/pdf_documents/Finanace.pdf) docume
 
 ![Pie chart.png](assets/images/readme/Pie%20chart.png)
 
-- I have created a section for reserve/payback
-- It becomes a reserve when I want to see how long the money in that account will last me
-- This is based on a 3-month withdrawal from that account
-- Pension funds are based on a 3-months of daily expenses
-- For when I retire one day, I want to see how long my money will last at the average that I am spending
-- The second opening that I left for a pension fund under reserve will always be at zero as the one above will take
-  both pension funds into account as it works on the balance of both
-- Loans are based on a 3-month deposit as I want to see how long it will take until the loan is paid back
-- The Program asks for Salary and Company name and updates it in the current_month that you are on
+- You can update salary and company that you work for
+- There is a section that will ask you for your monthly expenses
+- Only when you quit this particular menu will it update the spreadsheet
+- the reason for that is to limit the number of api calls that you are making
+- data gets update to the current month that you are on
 
 ---
 
@@ -185,7 +182,7 @@ You can find the file id from the address bar
 
 ### [Tested that it correctly creates a spreadsheet based on year](#table-of-content)
 
-- To test if is correctly creates a spreadsheet based on year
+- To test if it correctly creates a spreadsheet based on year
 - I can change the current_year variable in settings.py
 - I changed that variable to 2024
 
@@ -197,10 +194,10 @@ You can find the file id from the address bar
 - You need to pass in option number and an input
 - Option number is so that you can select from one of the numbers above in the print statements
 - There is validation on the input, the input needs to be an integer from the options
-- For example, if the options are from 1 to 5 it will only accept that
-- Once the correct option is selected it will take you to that option where certain criteria can be performed
-- During the testing of this I created functions in the test.py file, as It takes to long to run the code to get 
-  from the spreadsheet every time, and it uses my api limit to often
+- For example, if the options are from 1 to 5, it will only accept that
+- Once the correct option is selected, it will take you to that option where certain criteria can be performed
+- During the testing of this I created functions in the test.py file, as It takes too long to run the code to get 
+  from the spreadsheet every time, and it uses my api limit too often
 - When I was happy with the results, I would implement that logic in my program and run it to test it out
 
 ---
@@ -226,6 +223,12 @@ You can find the file id from the address bar
 - At this point, it is only basing everything on the template
 - As soon as data is entered in the terminal it updates the template at the same time
 - As a plan, I would like it to get all data from last year to make sure it is all up to date
+
+### [Balances need to be updated](#table-of-content)
+
+- Balances don't yet get updated in template spreadsheet
+- As a plan, I would like to update my account balances in the template spreadsheet
+- keeping it in sync, so that it can always get updated with the correct data
 
 ---
 

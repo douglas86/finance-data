@@ -19,28 +19,6 @@ class Validators:
             print("You must enter a number?")
             return False
 
-    def check_number(self):
-        """
-        Checks if number is:
-            no more than two decimal places
-            if value is a number
-            must not be a negative number
-        :return:
-        """
-        try:
-            splitting = str(self.number).split(".")
-            assert 0 < float(self.number) and len(splitting) <= 2
-            assert len(splitting) <= 2 and len(splitting[-1]) <= 2
-        except AssertionError:
-            print("Value can't be negative")
-            print("There must be no more than 2 decimal places")
-            return False
-        except ValueError:
-            print("Your input is not a number")
-            return False
-        else:
-            return True
-
     def check_salary(self):
         """
         Checks:

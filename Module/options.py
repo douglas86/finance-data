@@ -186,7 +186,7 @@ class Options:
             while True:
                 price = input("How much is this purchase?\n")
                 valid = Validators(number=price, option=20)
-                answer = valid.check_number()
+                answer = valid.check_salary()
 
                 if answer:
                     try:

@@ -146,7 +146,7 @@ class Options:
             Draws out the table
             :return:
             """
-            table.field_names = ["column1", "column2", "column3", "column4"]
+            table.field_names = ["column1", "column2", "column3"]
             table.add_row(
                 [
                     "1. Clothing and Footwear",
@@ -167,16 +167,16 @@ class Options:
                     "16. Laundry",
                 ]
             )
-            table.add_row(
-                (
-                    [
-                        "17. Education",
-                        "18. Home Improvements",
-                        "19. Family Assistance",
-                        "20. Quit",
-                    ]
-                )
-            )
+            # table.add_row(
+            #     (
+            #         [
+            #             "17. Education",
+            #             "18. Home Improvements",
+            #             "19. Family Assistance",
+            #             "20. Quit",
+            #         ]
+            #     )
+            # )
 
         def item_name(item):
             """

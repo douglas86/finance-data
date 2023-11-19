@@ -279,6 +279,7 @@ class Options:
             # prints table to the terminal
             print(table)
 
+            print('Option 20 will quit this menu and update spreadsheet')
             option = select_option()
             validator = Validators(number=option, option=20)
             check_answer = validator.check_number_and_option()

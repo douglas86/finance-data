@@ -54,7 +54,8 @@ class Validators:
         try:
             splitting = self.number.split(".")
             assert float(self.number) > 0
-            assert len(splitting) <= 2 and len(splitting[-1]) <= 2
+            if len(splitting) == 2:
+                assert len(splitting[-1]) <= 2
         except AssertionError:
             print("There can't be a negative number")
             print("Number can't have more than 2 decimal places")

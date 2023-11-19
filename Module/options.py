@@ -127,14 +127,13 @@ class Options:
             if correct_answer:
                 match int(number):
                     case 1:
-                        salary_number = input('Please enter your salary amount?\n')
-                        valid = Validators(number=salary_number, option=3)
-                        check_salary = valid.check_number()
-                        print('salary', check_salary)
+                        salary = input("Please enter your salary amount?\n")
+                        validator = Validators(number=salary, option=2)
+                        check_salary = validator.check_salary()
                         if check_salary:
                             self.data_to_be_updated.append({
                                 "range": "G10",
-                                "values": [[float(salary_number)]]
+                                "values": [[float(salary)]]
                             })
                             help_with_anything_else()
                     case 2:

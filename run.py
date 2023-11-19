@@ -11,6 +11,7 @@ def main():
     :return:
     """
 
+    # Program descriptions
     print("This is a simple program to keep track of my day-to-day financials")
     print("This program is a simple terminal emulator in order to automate the process")
     print(

@@ -89,13 +89,10 @@ class Options:
             # print out options to select
             print("1. Salary")
             print("2. Daily Spending")
-            print("3. Transfer Between Accounts")
-            print("4. Loan, Credit Card or Debit order")
-            print("5. Interest or Bank charges from accounts")
-            print("6. Quit")
+            print("3. Quit")
 
             number = select_option()
-            validators = Validators(number=number, option=6)
+            validators = Validators(number=number, option=3)
             correct_answer = validators.check_number_and_option()
 
             if correct_answer:
@@ -105,12 +102,6 @@ class Options:
                     case 2:
                         self.daily_spending_option()
                     case 3:
-                        self.transfer_between_accounts_option()
-                    case 4:
-                        self.loan_credit_or_debit_order_option()
-                    case 5:
-                        self.interest_bank_charges_option()
-                    case 6:
                         break
 
     def salary_option(self):
@@ -327,15 +318,6 @@ class Options:
                     case 20:
                         update_spreadsheet_with_expenses()
                         break
-
-    def transfer_between_accounts_option(self):
-        print("Transfer between accounts option was selected")
-
-    def loan_credit_or_debit_order_option(self):
-        print("Loan, Credit or Debit Order option was selected")
-
-    def interest_bank_charges_option(self):
-        print("Interest or bank charges option was selected")
 
 
 options = Options()

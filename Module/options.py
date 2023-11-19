@@ -152,19 +152,31 @@ class Options:
                     "1. Clothing and Footwear",
                     "2. Technology",
                     "3. Groceries",
-                    "4. Eating Out",
+                    # "4. Eating Out",
                 ]
             )
             table.add_row(
-                ["5. Luxury Items", "6. Personal Care", "7. Transport", "8. General"]
+                [
+                    "5. Luxury Items",
+                    "6. Personal Care",
+                    "7. Transport",
+                    # "8. General"
+                ]
             )
-            table.add_row(["9. Bills", "10. Charity", "11. Entertainment", "12. Gifts"])
+            table.add_row(
+                [
+                    "9. Bills",
+                    "10. Charity",
+                    "11. Entertainment",
+                    # "12. Gifts"
+                ]
+            )
             table.add_row(
                 [
                     "13. Herbs, spices and sources",
                     "14. Holidays",
                     "15. Household chemicals",
-                    "16. Laundry",
+                    # "16. Laundry",
                 ]
             )
             # table.add_row(

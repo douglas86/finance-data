@@ -29,9 +29,7 @@ class Options:
         # fetches all data from spreadsheet
         # loads data to self.data variable
         if crud_operation == "get":
-            getting = (
-                opening.batch_get(lists)
-            )
+            getting = opening.batch_get(lists)
             self.data["deposit"] = getting[0]
             self.data["withdraw"] = getting[1]
             self.data["deposit_withdraw_totals"] = getting[2]
@@ -110,15 +108,11 @@ class Options:
         :return:
         """
 
-        salary = self.data['deposit'][0][-1]
-        company = self.data['deposit'][0][1]
-
         while True:
-            print(f'Your current salary is: {salary if salary != '£0' else "You have not entered a salary yet!"}')
-            print(f'{company if company != 'Salary' else "You have not yet entered a company name"}')
-            print(f'1. Update salary: {salary}')
-            print(f'2. Update company: {company}')
-            print(f'3. Quit')
+            print("Option 3 will quit this menu and update spreadsheet")
+            print(f"1. Update salary")
+            print(f"2. Update company")
+            print(f"3. Quit")
 
             number = select_option()
             validators = Validators(number=number, option=3)
@@ -131,22 +125,18 @@ class Options:
                         validator = Validators(number=salary, option=2)
                         check_salary = validator.check_salary()
                         if check_salary:
-                            self.data_to_be_updated.append({
-                                "range": "G10",
-                                "values": [[float(salary)]]
-                            })
-                            help_with_anything_else()
+                            self.data_to_be_updated.append(
+                                {"range": "G10", "values": [[float(salary)]]}
+                            )
                     case 2:
-                        company_name = input('Please enter the name of your company?\n')
-                        self.data_to_be_updated.append({
-                            "range": "C10",
-                            "values": [[str(company_name)]]
-                        })
-                        help_with_anything_else()
+                        company_name = input("Please enter the name of your company?\n")
+                        self.data_to_be_updated.append(
+                            {"range": "C10", "values": [[str(company_name)]]}
+                        )
                     case 3:
                         self.__iter__("updating")
                         self.data_to_be_updated = []
-                        print('Salary data has been updated!')
+                        print("Salary data has been updated!")
                         break
 
             help_with_anything_else()
@@ -162,50 +152,50 @@ class Options:
         # keeps track of all monthly expenses
         monthly_expenses = {}
         # extracts data already stored in spreadsheet
-        withdraw = self.data['withdraw']
+        withdraw = self.data["withdraw"]
 
         # if there is data in the spreadsheet already
         # append it to monthly_expenses dictionary
         if len(withdraw) > 0:
             for i in range(len(withdraw)):
-                monthly_expenses[withdraw[i][0]] = float(withdraw[i][-1].strip('£'))
+                monthly_expenses[withdraw[i][0]] = float(withdraw[i][-1].strip("£"))
 
         def table_prettified():
             """
             Draws out the table
             :return:
             """
-            table.field_names = ['column1', 'column2', 'column3', 'column4']
-            table.add_row([
-                "1. Clothing and Footwear",
-                "2. Technology",
-                "3. Groceries",
-                "4. Eating Out"
-            ])
-            table.add_row([
-                "5. Luxury Items",
-                "6. Personal Care",
-                "7. Transport",
-                "8. General"
-            ])
-            table.add_row([
-                "9. Bills",
-                "10. Charity",
-                "11. Entertainment",
-                "12. Gifts"
-            ])
-            table.add_row([
-                "13. Herbs, spices and sources",
-                "14. Holidays",
-                "15. Household chemicals",
-                "16. Laundry"
-            ])
-            table.add_row(([
-                "17. Education",
-                "18. Home Improvements",
-                "19. Family Assistance",
-                "20. Quit"
-            ]))
+            table.field_names = ["column1", "column2", "column3", "column4"]
+            table.add_row(
+                [
+                    "1. Clothing and Footwear",
+                    "2. Technology",
+                    "3. Groceries",
+                    "4. Eating Out",
+                ]
+            )
+            table.add_row(
+                ["5. Luxury Items", "6. Personal Care", "7. Transport", "8. General"]
+            )
+            table.add_row(["9. Bills", "10. Charity", "11. Entertainment", "12. Gifts"])
+            table.add_row(
+                [
+                    "13. Herbs, spices and sources",
+                    "14. Holidays",
+                    "15. Household chemicals",
+                    "16. Laundry",
+                ]
+            )
+            table.add_row(
+                (
+                    [
+                        "17. Education",
+                        "18. Home Improvements",
+                        "19. Family Assistance",
+                        "20. Quit",
+                    ]
+                )
+            )
 
         def item_name(item):
             """
@@ -233,10 +223,9 @@ class Options:
             :return:
             """
             for num in range(len(lists)):
-                self.data_to_be_updated.append({
-                    "range": f'{start_column}{17+num}',
-                    "values": [[lists[num]]]
-                })
+                self.data_to_be_updated.append(
+                    {"range": f"{start_column}{17+num}", "values": [[lists[num]]]}
+                )
 
         def update_spreadsheet_with_expenses():
             """
@@ -270,7 +259,7 @@ class Options:
             # prints table to the terminal
             print(table)
 
-            print('Option 20 will quit this menu and update spreadsheet')
+            print("Option 20 will quit this menu and update spreadsheet")
             option = select_option()
             validator = Validators(number=option, option=20)
             check_answer = validator.check_number_and_option()
@@ -278,43 +267,43 @@ class Options:
             if check_answer:
                 match int(option):
                     case 1:
-                        item_name('Clothing and Footwear')
+                        item_name("Clothing and Footwear")
                     case 2:
-                        item_name('Technology')
+                        item_name("Technology")
                     case 3:
-                        item_name('Groceries')
+                        item_name("Groceries")
                     case 4:
-                        item_name('Eating Out')
+                        item_name("Eating Out")
                     case 5:
-                        item_name('Luxury Items')
+                        item_name("Luxury Items")
                     case 6:
-                        item_name('Personal Care')
+                        item_name("Personal Care")
                     case 7:
-                        item_name('Transport')
+                        item_name("Transport")
                     case 8:
-                        item_name('General')
+                        item_name("General")
                     case 9:
-                        item_name('Bills')
+                        item_name("Bills")
                     case 10:
-                        item_name('Charity')
+                        item_name("Charity")
                     case 11:
-                        item_name('Entertainment')
+                        item_name("Entertainment")
                     case 12:
-                        item_name('Gifts')
+                        item_name("Gifts")
                     case 13:
-                        item_name('Herbs, spices and sources')
+                        item_name("Herbs, spices and sources")
                     case 14:
-                        item_name('Holidays')
+                        item_name("Holidays")
                     case 15:
-                        item_name('Household chemicals')
+                        item_name("Household chemicals")
                     case 16:
-                        item_name('Laundry')
+                        item_name("Laundry")
                     case 17:
-                        item_name('Education')
+                        item_name("Education")
                     case 18:
-                        item_name('Home Improvements')
+                        item_name("Home Improvements")
                     case 19:
-                        item_name('Family Assistance')
+                        item_name("Family Assistance")
                     case 20:
                         update_spreadsheet_with_expenses()
                         break

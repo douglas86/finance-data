@@ -166,10 +166,15 @@ class Options:
         :return:
         """
 
+        # creates the table
         table = PrettyTable()
+        # keeps track of all monthly expenses
         monthly_expenses = {}
+        # extracts data already stored in spreadsheet
         withdraw = self.data['withdraw']
 
+        # if there is data in the spreadsheet already
+        # append it to monthly_expenses dictionary
         if len(withdraw) > 0:
             for i in range(len(withdraw)):
                 monthly_expenses[withdraw[i][0]] = float(withdraw[i][-1].strip('£'))
